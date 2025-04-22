@@ -15,10 +15,7 @@ export const Header: React.FC = () => {
               className="header__top-img"
             />
           </a>
-          <button className="header__top-catalog">
-            <Image src="images/catalog-decor.svg" width={20} height={20} alt="Каталог" />
-            Каталог
-          </button>
+          <button className="header__top-catalog">Каталог</button>
 
           <div className="header__top-input-wrapper">
             <input
