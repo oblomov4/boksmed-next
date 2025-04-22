@@ -1,3 +1,9 @@
+import { Promo } from '@/shared/components/promo';
+
 export default function Home() {
-  return <h1>Hello world</h1>;
+  return (
+    <>
+      <Promo />
+    </>
+  );
 }
