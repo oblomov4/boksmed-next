@@ -1,12 +1,13 @@
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="container">
         <div className="header__top">
-          <a className="header__top-logo-link" href="index.html">
+          <Link className="header__top-logo-link" href="/">
             <Image
               width={145}
               height={33}
@@ -14,8 +15,10 @@ export const Header: React.FC = () => {
               alt="boksmed"
               className="header__top-img"
             />
-          </a>
-          <button className="header__top-catalog">Каталог</button>
+          </Link>
+          <Link href="/catalog" className="header__top-catalog">
+            Каталог
+          </Link>
 
           <div className="header__top-input-wrapper">
             <input
@@ -25,9 +28,9 @@ export const Header: React.FC = () => {
             />
           </div>
 
-          <a className="header__top-order-call" href="order-call.html">
+          <Link className="header__top-order-call" href="/call-order">
             Заказать обратный звонок
-          </a>
+          </Link>
 
           <a className="header__top-phone" href="tel:+73412650877">
             8 (3412) 65-08-77

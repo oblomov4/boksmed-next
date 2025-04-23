@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 export const Footer: React.FC = () => {
@@ -79,9 +80,9 @@ export const Footer: React.FC = () => {
 
           <ul className="footer__three-list">
             <li className="footer__three-item">
-              <a href="#" className="footer__three-a">
+              <Link href="/catalog" className="footer__three-a">
                 Каталог
-              </a>
+              </Link>
             </li>
             <li className="footer__three-item">
               <a href="#" className="footer__three-a">
@@ -102,9 +103,9 @@ export const Footer: React.FC = () => {
 
           <div className="footer__right">
             <div className="footer__four">
-              <a className="footer__four-a" href="order-call.html">
+              <Link className="footer__four-a" href="/call-order">
                 Заказать обратный звонок
-              </a>
+              </Link>
               <p className="footer__four-p">
                 Россия, Удмуртская Республика 426011, г. Ижевск, ул. Пушкинская 290 тел. 8 (3412)
                 65-08-77

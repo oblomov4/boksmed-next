@@ -3,4 +3,7 @@ export { Promo } from './promo';
 export { Equipment } from './equipment';
 export { NewItems } from './new-items';
 export { LastNews } from './last-news';
+export { BreadCrumps } from './bread-crumps';
+export { FormWrapper } from './form-wrapper';
+export { CallOrderForm } from './call-order-form';
 export { Footer } from './footer';

@@ -545,6 +545,125 @@ input {
 }
 
 
+/* bread-crumps */
+.bread-crumbs {
+  margin-bottom: 60px;
+}
+
+.bread-crumbs__inner-a {
+  position: relative;
+  padding-right: 16px;
+  margin-right: 7px;
+  font-size: 14px;
+}
+
+.bread-crumbs__inner-a::after {
+  content: '';
+  position: absolute;
+  background-image: url('../../public/images/bread-crumbs-decor.svg');
+  width: 11px;
+  height: 11px;
+  right: 0;
+  top: 4px;
+}
+.bread-crumbs__inner-a--active {
+  color: #3257a4;
+}
+
+.bread-crumbs__inner-a--active::after {
+  display: none;
+}
+
+
+/* form-wrapper */
+
+.form-wrapper {
+  border-radius: 15px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 10px 30px rgba(73, 122, 226, 0.1);
+}
+.form-wrapper-header {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 31px 105px 18px 105px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 37px;
+}
+.form-wrapper-text {
+}
+.form-wrapper-title {
+  font-size: 24px;
+  color: #3257a4;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+.form-wrapper-subtitle {
+  font-size: 18px;
+}
+.form-wrapper-img {
+  align-self: center;
+}
+.form-wrapper-container {
+  padding: 0 105px 47px 105px;
+}
+
+.order-call__form-politic {
+  font-size: 14px;
+}
+
+
+/* callOrderForm */
+
+.order-call {
+  margin-bottom: 100px;
+}
+
+.order-call__form-wrapper-input {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 21px;
+}
+.order-call__form-input {
+  max-width: 390px;
+  width: 100%;
+  padding: 20px 27px;
+  border-radius: 15px;
+  box-shadow: inset 0 0 3px rgba(50, 87, 164, 0.2);
+  font-size: 18px;
+}
+
+.order-call__form-input::placeholder {
+  color: #111111;
+}
+
+.order-call__form-textarea {
+  display: block;
+  max-width: 809px;
+  width: 100%;
+  min-height: 110px;
+  border-radius: 15px;
+  resize: none;
+  padding: 20px 27px;
+  box-shadow: inset 0 0 3px rgba(50, 87, 164, 0.2);
+  border: none;
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+
+.order-call__form-textarea::placeholder {
+  color: #111111;
+}
+.order-call__form-btn {
+  display: inline-block;
+  padding: 15px 38px;
+  border-radius: 10px;
+  color: #ebf4fc;
+  background: radial-gradient(circle, rgba(73, 122, 226, 1) 0%, rgba(50, 87, 164, 1) 100%);
+  filter: drop-shadow(0px 0px 4px #1a3e8b);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 18px;
+}
+
 
 /* footer */
 .footer {
