@@ -6,4 +6,5 @@ export { LastNews } from './last-news';
 export { BreadCrumps } from './bread-crumps';
 export { FormWrapper } from './form-wrapper';
 export { CallOrderForm } from './call-order-form';
+export { LoginForm } from './login-form';
 export { Footer } from './footer';

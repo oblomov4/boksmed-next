@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import clsx from 'clsx';
 import React from 'react';
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   imgUrl?: string;
   underFormText?: string;
+  border?: boolean;
 }
 
 export const FormWrapper: React.FC<React.PropsWithChildren<Props>> = ({
@@ -14,13 +16,14 @@ export const FormWrapper: React.FC<React.PropsWithChildren<Props>> = ({
   description,
   imgUrl,
   underFormText,
+  border,
 }) => {
   return (
-    <div className="form-wrapper">
+    <div className={clsx('form-wrapper', border && 'border')}>
       <div className="form-wrapper-header">
         <div className="form-wrapper-text">
           <h3 className="form-wrapper-title">{title}</h3>
-          <p className="form-wrapper-subtitle">{description}</p>
+          {description && <p className="form-wrapper-subtitle">{description}</p>}
         </div>
         {imgUrl && <img className="form-wrapper-img" src={imgUrl} alt="" />}
       </div>

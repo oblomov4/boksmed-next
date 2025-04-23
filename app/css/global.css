@@ -11,12 +11,10 @@ html {
   box-sizing: inherit;
 }
 
-
 body {
   color: #111111;
   height: 100%;
 }
-
 
 a {
   text-decoration: none;
@@ -52,7 +50,6 @@ input {
   margin: 0 auto;
 }
 
-
 .main {
   flex-grow: 1;
   background-color: #f7f9fb;
@@ -67,7 +64,6 @@ input {
   text-align: center;
   margin-bottom: 60px;
 }
-
 
 .hidden {
   display: none;
@@ -88,6 +84,9 @@ input {
   transform: rotate(0deg) !important;
 }
 
+.border {
+  border: 1px solid #497ae2 !important;
+}
 
 /* header */
 
@@ -108,7 +107,6 @@ input {
   margin-right: 98px;
 }
 
-
 .header__top-catalog {
   text-transform: uppercase;
   padding-left: 27px;
@@ -126,14 +124,12 @@ input {
   top: -1px;
 }
 
-
 .header__top-input-wrapper {
   position: relative;
   max-width: 314px;
   width: 100%;
   margin-right: 56px;
 }
-
 
 .header__top-input-wrapper::before {
   content: '';
@@ -145,7 +141,6 @@ input {
   top: 8px;
 }
 
-
 .header__top-input {
   width: 100%;
   border-radius: 10px;
@@ -153,11 +148,9 @@ input {
   padding: 9px 17px 8px 40px;
 }
 
-
 .header__top-input::placeholder {
   color: #111111;
 }
-
 
 .header__top-order-call {
   color: #3257a4;
@@ -169,7 +162,6 @@ input {
   margin-right: 33px;
 }
 
-
 .header__top-order-call::before {
   content: '';
   position: absolute;
@@ -179,7 +171,6 @@ input {
   left: 0;
 }
 
-
 .header__top-phone {
   margin-right: 33px;
 }
@@ -187,7 +178,6 @@ input {
   display: flex;
   gap: 5px;
 }
-
 
 .header__bottom {
   display: flex;
@@ -212,12 +202,10 @@ input {
   align-items: center;
 }
 
-
 /* promo */
 .promo {
   margin-bottom: 118px;
 }
-
 
 .swiperOne {
   border-radius: 45px;
@@ -274,7 +262,6 @@ input {
 .promo__box-image {
   align-self: end;
 }
-
 
 /* Equipment */
 .equipment {
@@ -361,9 +348,7 @@ input {
   transition: all 0.3s;
 }
 
-
 /* new-item */
-
 
 .new__title {
   margin-bottom: 0 !important;
@@ -544,7 +529,6 @@ input {
   color: #c41c1b;
 }
 
-
 /* bread-crumps */
 .bread-crumbs {
   margin-bottom: 60px;
@@ -573,7 +557,6 @@ input {
 .bread-crumbs__inner-a--active::after {
   display: none;
 }
-
 
 /* form-wrapper */
 
@@ -609,7 +592,6 @@ input {
 .order-call__form-politic {
   font-size: 14px;
 }
-
 
 /* callOrderForm */
 
@@ -663,7 +645,6 @@ input {
   margin-bottom: 18px;
 }
 
-
 /* 404 */
 .not-found-title {
   text-align: center;
@@ -681,7 +662,6 @@ input {
   margin-bottom: 175px;
 }
 
-
 /* order-success */
 
 .order-success {
@@ -697,8 +677,6 @@ input {
   text-align: center;
 }
 
-
-
 /* register-success */
 
 .register-success {
@@ -713,6 +691,58 @@ input {
   margin-bottom: 25px;
 }
 
+/* login */
+
+.login {
+  margin-bottom: 80px;
+}
+
+.anonym__content-wrapper {
+  display: flex;
+  gap: 30px;
+}
+.anonym__content-left {
+  max-width: 390px;
+  width: 100%;
+}
+.anonym__content-input {
+  display: block;
+  width: 100%;
+  box-shadow: 0 0 3px rgba(50, 87, 164, 0.25);
+  margin-bottom: 20px;
+  padding: 20px 25px;
+  border-radius: 15px;
+  font-size: 18px;
+}
+
+.anonym__content-input::placeholder {
+  color: #111;
+}
+
+.anonym__content-right {
+  max-width: 390px;
+  width: 100%;
+}
+
+.promo__box-politic {
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.anonym__content-pass {
+  display: flex;
+  justify-content: end;
+  font-size: 10px;
+}
+
+.anonym-link {
+  display: flex;
+  justify-content: end;
+  font-size: 14px;
+  color: #3257a4;
+  text-decoration: underline;
+  font-weight: 500;
+}
 
 /* footer */
 .footer {
@@ -721,7 +751,6 @@ input {
   font-size: 14px;
   padding: 66px 0 37px 0;
 }
-
 
 .footer__inner {
   display: flex;
@@ -748,11 +777,9 @@ input {
   margin-bottom: 20px;
 }
 
-
 .footer__three-item {
   margin-bottom: 20px;
 }
-
 
 .footer__right {
   display: flex;
@@ -762,14 +789,12 @@ input {
   max-width: 270px;
 }
 
-
 .footer__four-a {
   display: block;
   margin-bottom: 33px;
   padding-left: 15px;
   position: relative;
 }
-
 
 .footer__four-a::before {
   content: '';
@@ -796,7 +821,6 @@ input {
   gap: 12px;
 }
 
-
 /* анимации */
 
 @keyframes hidden-elem {
@@ -810,7 +834,6 @@ input {
     transform: translateX(-100%);
   }
 }
-
 
 @keyframes show-elem {
   from {
