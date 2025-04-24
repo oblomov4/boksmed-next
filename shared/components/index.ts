@@ -15,4 +15,5 @@ export { PaymentInfo } from './payment-info';
 export { Documents } from './documents';
 export { ContactInfo } from './contact-info';
 export { QuestionForm } from './question-form';
+export { DetailsInfo } from './details-info';
 export { Footer } from './footer';
