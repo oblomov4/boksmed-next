@@ -1,6 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Logo from '@/public/images/logo.svg';
+import Viber from '@/public/images/viber.svg';
+import Telegram from '@/public/images/telegram.svg';
+import Whatsapp from '@/public/images/whatsapp.svg';
+import Polylines from '@/public/images/polylines.svg';
+import ShoppingCart from '@/public/images/shopping-cart.svg';
+import Doctor from '@/public/images/doctor.svg';
 
 export const Header: React.FC = () => {
   return (
@@ -9,9 +16,9 @@ export const Header: React.FC = () => {
         <div className="header__top">
           <Link className="header__top-logo-link" href="/">
             <Image
-              width={145}
-              height={33}
-              src="images/logo.svg"
+              width={Logo.width}
+              height={Logo.height}
+              src={Logo.src}
               alt="boksmed"
               className="header__top-img"
             />
@@ -40,10 +47,10 @@ export const Header: React.FC = () => {
             <li className="header__top-list-item">
               <a className="header__top-list-a" href="#">
                 <Image
-                  width={20}
-                  height={20}
+                  width={Viber.width}
+                  height={Viber.height}
                   className="header__top-list-img"
-                  src="images/viber.svg"
+                  src={Viber.src}
                   alt="viber"
                 />
               </a>
@@ -51,10 +58,10 @@ export const Header: React.FC = () => {
             <li className="header__top-list-item">
               <a className="header__top-list-a" href="#">
                 <Image
-                  width={20}
-                  height={20}
+                  width={Telegram.width}
+                  height={Telegram.height}
                   className="header__top-list-img"
-                  src="images/telegram.svg"
+                  src={Telegram.src}
                   alt="telegram"
                 />
               </a>
@@ -62,10 +69,10 @@ export const Header: React.FC = () => {
             <li className="header__top-list-item">
               <a className="header__top-list-a" href="#">
                 <Image
-                  width={20}
-                  height={20}
+                  width={Whatsapp.width}
+                  height={Whatsapp.height}
                   className="header__top-list-img"
-                  src="images/whatsapp.svg"
+                  src={Whatsapp.src}
                   alt="whatsapp"
                 />
               </a>
@@ -283,10 +290,10 @@ export const Header: React.FC = () => {
             <li className="header__bottom-item">
               <a href="#" className="header__bottom-link">
                 <Image
-                  width={29}
-                  height={21}
+                  width={Polylines.width}
+                  height={Polylines.height}
                   className="header__bottom-img"
-                  src="images/polylines.svg"
+                  src={Polylines.src}
                   alt="polylines"
                 />
                 Сравнения
@@ -296,10 +303,10 @@ export const Header: React.FC = () => {
             <li className="header__bottom-item">
               <a href="#" className="header__bottom-link">
                 <Image
-                  width={19}
-                  height={19}
+                  width={ShoppingCart.width}
+                  height={ShoppingCart.height}
                   className="header__bottom-img"
-                  src="images/shopping-cart.svg"
+                  src={ShoppingCart.src}
                   alt="shopping-cart"
                 />
                 Корзина
@@ -309,10 +316,10 @@ export const Header: React.FC = () => {
             <li className="header__bottom-item">
               <a href="#" className="header__bottom-link">
                 <Image
-                  width={22}
-                  height={22}
+                  width={Doctor.width}
+                  height={Doctor.height}
+                  src={Doctor.src}
                   className="header__bottom-img"
-                  src="images/doctor.svg"
                   alt="doctor"
                 />
                 Личный кабинет

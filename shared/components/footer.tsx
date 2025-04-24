@@ -1,6 +1,12 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import Logo from '@/public/images/logo.svg';
+import Viber from '@/public/images/viber.svg';
+import Telegram from '@/public/images/telegram.svg';
+import Whatsapp from '@/public/images/whatsapp.svg';
+import ViberBig from '@/public/images/viber-big.svg';
+import Up from '@/public/images/up.svg';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,10 +16,10 @@ export const Footer: React.FC = () => {
           <div className="footer__one">
             <a href="index.html">
               <Image
-                width={145}
-                height={33}
+                width={Logo.width}
+                height={Logo.height}
                 className="footer__one-img"
-                src="images/logo.svg"
+                src={Logo.src}
                 alt="boksme"
               />
             </a>
@@ -22,9 +28,9 @@ export const Footer: React.FC = () => {
               <li className="footer__one-item">
                 <a href="#" className="footer__one-item-a">
                   <Image
-                    width={20}
-                    height={20}
-                    src="images/viber.svg"
+                    width={Viber.width}
+                    height={Viber.height}
+                    src={Viber.src}
                     alt="viber"
                     className="footer__one-item-img"
                   />
@@ -33,9 +39,9 @@ export const Footer: React.FC = () => {
               <li className="footer__one-item">
                 <a href="#" className="footer__one-item-a">
                   <Image
-                    width={20}
-                    height={20}
-                    src="images/telegram.svg"
+                    width={Telegram.width}
+                    height={Telegram.height}
+                    src={Telegram.src}
                     alt="telegram"
                     className="footer__one-item-img"
                   />
@@ -44,9 +50,9 @@ export const Footer: React.FC = () => {
               <li className="footer__one-item">
                 <a href="#" className="footer__one-item-a">
                   <Image
-                    width={20}
-                    height={20}
-                    src="images/whatsapp.svg"
+                    width={Whatsapp.width}
+                    height={Whatsapp.height}
+                    src={Whatsapp.src}
                     alt="whatsapp"
                     className="footer__one-item-img"
                   />
@@ -126,17 +132,17 @@ export const Footer: React.FC = () => {
 
         <div className="footer__wrapper">
           <Image
-            width={58}
-            height={58}
+            width={ViberBig.width}
+            height={ViberBig.height}
             className="footer__wrapper-img"
-            src="images/viber-big.svg"
+            src={ViberBig.src}
             alt="viber"
           />
           <Image
-            width={58}
-            height={58}
+            width={Up.width}
+            height={Up.height}
             className="footer__wrapper-img"
-            src="images/up.svg"
+            src={Up.src}
             alt="up"
           />
         </div>

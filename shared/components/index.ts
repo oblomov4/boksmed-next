@@ -7,4 +7,8 @@ export { BreadCrumps } from './bread-crumps';
 export { FormWrapper } from './form-wrapper';
 export { CallOrderForm } from './call-order-form';
 export { LoginForm } from './login-form';
+export { AuthPlaceOrderWrapper } from './auth-place-order-wrapper';
+export { AnonForm } from './anon-form';
+export { MapComponent } from './map-component';
+export { CalculateComponent } from './calculate-component';
 export { Footer } from './footer';
