@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
       <div className="container">
         <div className="footer__inner">
           <div className="footer__one">
-            <a href="index.html">
+            <Link href="/">
               <Image
                 width={Logo.width}
                 height={Logo.height}
@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
                 src={Logo.src}
                 alt="boksme"
               />
-            </a>
+            </Link>
 
             <ul className="footer__one-list">
               <li className="footer__one-item">
@@ -73,14 +73,14 @@ export const Footer: React.FC = () => {
               </a>
             </li>
             <li className="footer__two-item">
-              <a href="#" className="footer__two-a">
+              <Link href="/dilivery" className="footer__two-a">
                 Доставка
-              </a>
+              </Link>
             </li>
             <li className="footer__two-item">
-              <a href="#" className="footer__two-a">
+              <Link href="/payment" className="footer__two-a">
                 Оплата
-              </a>
+              </Link>
             </li>
           </ul>
 
@@ -91,19 +91,19 @@ export const Footer: React.FC = () => {
               </Link>
             </li>
             <li className="footer__three-item">
-              <a href="#" className="footer__three-a">
+              <Link href="/news" className="footer__three-a">
                 Новости
-              </a>
+              </Link>
             </li>
             <li className="footer__three-item">
-              <a href="#" className="footer__three-a">
+              <Link href="/details" className="footer__three-a">
                 Реквизиты
-              </a>
+              </Link>
             </li>
             <li className="footer__three-item">
-              <a href="#" className="footer__three-a">
+              <Link href="/contacts" className="footer__three-a">
                 Контакты
-              </a>
+              </Link>
             </li>
           </ul>
 

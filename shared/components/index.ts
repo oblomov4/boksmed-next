@@ -13,4 +13,6 @@ export { MapComponent } from './map-component';
 export { CalculateComponent } from './calculate-component';
 export { PaymentInfo } from './payment-info';
 export { Documents } from './documents';
+export { ContactInfo } from './contact-info';
+export { QuestionForm } from './question-form';
 export { Footer } from './footer';

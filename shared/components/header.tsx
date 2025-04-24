@@ -259,29 +259,29 @@ export const Header: React.FC = () => {
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#" className="nav__item-a">
+                <Link href="/dilivery" className="nav__item-a">
                   Доставка
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#" className="nav__item-a">
+                <Link href="/payment" className="nav__item-a">
                   Оплата
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#" className="nav__item-a">
+                <Link href="/news" className="nav__item-a">
                   Новости
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#" className="nav__item-a">
+                <Link href="/details" className="nav__item-a">
                   Реквизиты
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#" className="nav__item-a">
+                <Link href="/contacts" className="nav__item-a">
                   Контакты
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
