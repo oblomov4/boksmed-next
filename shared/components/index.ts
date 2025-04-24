@@ -16,4 +16,8 @@ export { Documents } from './documents';
 export { ContactInfo } from './contact-info';
 export { QuestionForm } from './question-form';
 export { DetailsInfo } from './details-info';
+export { NewsItem } from './news-item';
+export { ProducesiltItem } from './producesilt-item';
+export { FormProfile } from './form-profile';
+export { ProfileMenu } from './profile-menu';
 export { Footer } from './footer';

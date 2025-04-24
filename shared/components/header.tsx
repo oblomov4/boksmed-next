@@ -254,9 +254,9 @@ export const Header: React.FC = () => {
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#" className="nav__item-a">
+                <Link href="/producesilt" className="nav__item-a">
                   Производители
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
                 <Link href="/dilivery" className="nav__item-a">
@@ -314,7 +314,7 @@ export const Header: React.FC = () => {
             </li>
 
             <li className="header__bottom-item">
-              <a href="#" className="header__bottom-link">
+              <Link href="/profile" className="header__bottom-link">
                 <Image
                   width={Doctor.width}
                   height={Doctor.height}
@@ -323,7 +323,7 @@ export const Header: React.FC = () => {
                   alt="doctor"
                 />
                 Личный кабинет
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
