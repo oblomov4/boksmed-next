@@ -11,4 +11,6 @@ export { AuthPlaceOrderWrapper } from './auth-place-order-wrapper';
 export { AnonForm } from './anon-form';
 export { MapComponent } from './map-component';
 export { CalculateComponent } from './calculate-component';
+export { PaymentInfo } from './payment-info';
+export { Documents } from './documents';
 export { Footer } from './footer';

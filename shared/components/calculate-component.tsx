@@ -80,8 +80,6 @@ export const CalculateComponent: React.FC = () => {
         const res = await fetch('api/get-cities');
         const data = await res.json();
 
-        console.log(data.data);
-
         const arr1 = [];
         const arr2 = [];
 
