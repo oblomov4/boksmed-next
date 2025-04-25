@@ -24,4 +24,8 @@ export { AboutWrapper } from './about-wrapper';
 export { OrderItemWrapper } from './order-item-wrapper';
 export { ReviewsItemWrapper } from './reviews-item-wrapper';
 export { Cart } from './cart';
+export { AdminLoginForm } from './admin-login-form';
+export { SidebarAdmin } from './sidebar-admin';
+export { AdminOrderList } from './admin-order-list';
+export { AdminUsersTable } from './admin-users-table';
 export { Footer } from './footer';
