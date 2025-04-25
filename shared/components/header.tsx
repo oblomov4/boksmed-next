@@ -5,7 +5,6 @@ import Logo from '@/public/images/logo.svg';
 import Viber from '@/public/images/viber.svg';
 import Telegram from '@/public/images/telegram.svg';
 import Whatsapp from '@/public/images/whatsapp.svg';
-import Polylines from '@/public/images/polylines.svg';
 import ShoppingCart from '@/public/images/shopping-cart.svg';
 import Doctor from '@/public/images/doctor.svg';
 
@@ -287,19 +286,6 @@ export const Header: React.FC = () => {
           </nav>
 
           <ul className="header__bottom-list">
-            <li className="header__bottom-item">
-              <a href="#" className="header__bottom-link">
-                <Image
-                  width={Polylines.width}
-                  height={Polylines.height}
-                  className="header__bottom-img"
-                  src={Polylines.src}
-                  alt="polylines"
-                />
-                Сравнения
-              </a>
-            </li>
-
             <li className="header__bottom-item">
               <a href="#" className="header__bottom-link">
                 <Image

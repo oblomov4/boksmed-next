@@ -9,16 +9,16 @@ export const OrderItem: React.FC = () => {
       <div className="cell cell-img" data-label="Фото">
         <img src="/images/orders1.png" alt="Товар 1" />
       </div>
-      <div className="cell cell-name-product" data-label="Название товара">
+      <div className="cell" data-label="Название товара">
         АВТОМАТИЧЕСКИЙ ДЕФИБРИЛЛЯТОР PRIMEDIC HEARTSAVE PAD
       </div>
-      <div className="cell cell-price" data-label="Цена">
+      <div className="cell" data-label="Цена">
         17 500 ₽
       </div>
-      <div className="cell cell-count" data-label="Количество">
+      <div className="cell" data-label="Количество">
         1
       </div>
-      <div className="cell cell-date" data-label="Дата доставки">
+      <div className="cell" data-label="Дата доставки">
         23.05.22
       </div>
     </>

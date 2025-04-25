@@ -20,23 +20,9 @@ export const ProfileMenu: React.FC = () => {
           </div>
 
           <div className="profile__right-box">
-            <img className="profile__right-img" src="images/profile2.svg" alt="" />
-            <p className="profile__right-text">
-              <a href="">Рейтинг</a>
-            </p>
-          </div>
-
-          <div className="profile__right-box">
-            <img className="profile__right-img" src="images/profile3.svg" alt="" />
-            <p className="profile__right-text">
-              <a href="">Список сравнений</a>
-            </p>
-          </div>
-
-          <div className="profile__right-box">
             <img className="profile__right-img" src="images/profile4.svg" alt="" />
             <p className="profile__right-text">
-              <a href="">Отзывы</a>
+              <Link href="/profile/reviews">Отзывы</Link>
             </p>
           </div>
         </div>

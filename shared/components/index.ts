@@ -22,4 +22,6 @@ export { FormProfile } from './form-profile';
 export { ProfileMenu } from './profile-menu';
 export { AboutWrapper } from './about-wrapper';
 export { OrderItemWrapper } from './order-item-wrapper';
+export { ReviewsItemWrapper } from './reviews-item-wrapper';
+export { Cart } from './cart';
 export { Footer } from './footer';
