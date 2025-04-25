@@ -20,4 +20,6 @@ export { NewsItem } from './news-item';
 export { ProducesiltItem } from './producesilt-item';
 export { FormProfile } from './form-profile';
 export { ProfileMenu } from './profile-menu';
+export { AboutWrapper } from './about-wrapper';
+export { OrderItemWrapper } from './order-item-wrapper';
 export { Footer } from './footer';

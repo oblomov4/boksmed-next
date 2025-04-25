@@ -249,9 +249,9 @@ export const Header: React.FC = () => {
           <nav className="nav">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#" className="nav__item-a">
+                <Link href="/about" className="nav__item-a">
                   О компании
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
                 <Link href="/producesilt" className="nav__item-a">

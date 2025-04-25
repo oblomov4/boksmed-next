@@ -63,9 +63,9 @@ export const Footer: React.FC = () => {
 
           <ul className="footer__two-list">
             <li className="footer__two-item">
-              <a href="#" className="footer__two-a">
+              <Link href="/about" className="footer__two-a">
                 О компании
-              </a>
+              </Link>
             </li>
             <li className="footer__two-item">
               <Link href="/producesilt" className="footer__two-a">
