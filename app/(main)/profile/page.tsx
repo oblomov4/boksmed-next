@@ -1,6 +1,10 @@
+import { auth } from '@/auth';
 import { BreadCrumps, FormProfile, ProfileMenu } from '@/shared/components';
+import Link from 'next/link';
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const session = await auth();
+
   return (
     <>
       <BreadCrumps
@@ -13,8 +17,20 @@ export default function ProfilePage() {
       <section className="profile">
         <div className="container">
           <div className="profile__inner">
-            <FormProfile />
-            <ProfileMenu />
+            {session ? (
+              <>
+                <FormProfile />
+                <ProfileMenu />
+              </>
+            ) : (
+              <div className="info-profile">
+                <Link className="info-profile__link" href="/login">
+                  Нажмите чтобы войти в аккаунт!
+                </Link>
+              </div>
+            )}
+            {/* <FormProfile />
+            <ProfileMenu /> */}
           </div>
         </div>
       </section>

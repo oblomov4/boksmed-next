@@ -210,6 +210,14 @@ input {
   align-items: center;
 }
 
+.register-page {
+  margin-bottom: 80px;
+}
+
+.err {
+  color: red;
+}
+
 /* promo */
 .promo {
   margin-bottom: 118px;
@@ -1512,6 +1520,18 @@ input {
   display: flex;
   justify-content: space-between;
 }
+
+.info-profile {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.info-profile__link {
+  color: #1a3e8b;
+  text-decoration: underline;
+}
+
 .profile__left {
   max-width: 600px;
   background-color: #fff;

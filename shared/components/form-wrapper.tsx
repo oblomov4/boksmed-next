@@ -19,6 +19,7 @@ export const FormWrapper: React.FC<React.PropsWithChildren<Props>> = ({
   border,
 }) => {
   return (
+  
     <div className={clsx('form-wrapper', border && 'border')}>
       <div className="form-wrapper-header">
         <div className="form-wrapper-text">

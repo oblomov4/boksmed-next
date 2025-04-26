@@ -1,5 +1,4 @@
 import { SelectUserTable } from './db/schema';
-import { Verification } from '@auth/core/errors';
 import { compare } from 'bcrypt';
 import NextAuth, { DefaultSession } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
@@ -41,10 +40,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (!isPasswordValid) {
           return null;
-        }
-
-        if (!findUser.verified) {
-          throw new Verification();
         }
 
         return {
