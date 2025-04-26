@@ -5,14 +5,12 @@ import Credentials from 'next-auth/providers/credentials';
 import { db } from './db';
 
 declare module 'next-auth' {
-  /**
-   * Returned by `auth`, `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-   */
   interface Session {
     user: {
       id: string;
       email: string;
       name: string;
+      lastName: string;
       phone: number;
       role: string;
       inn: string;
@@ -47,6 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: findUser.email,
           name: findUser.name,
           phone: findUser.phone,
+          lastName: findUser.lastName,
           role: findUser.role,
           inn: findUser.inn,
         };
@@ -70,6 +69,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.phone = findUser.phone;
         token.role = findUser.role;
         token.inn = findUser.inn;
+        token.lastName = findUser.lastName;
       }
 
       return token;
@@ -83,6 +83,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.phone = token.phone as number;
         session.user.role = token.role as string;
         session.user.inn = token.inn as string;
+        session.user.lastName = token.lastName as string;
       }
       return session;
     },

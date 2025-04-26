@@ -216,6 +216,12 @@ input {
 
 .err {
   color: red;
+  margin: 10px 0;
+}
+
+.success {
+  color: green;
+  margin: 10px 0;
 }
 
 /* promo */

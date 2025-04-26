@@ -1,6 +1,6 @@
 'use server';
 
-import { signIn } from '@/auth';
+import { auth, signIn } from '@/auth';
 import { db } from '@/db';
 import { SelectUserTable, usersTable } from '@/db/schema';
 import { loginSchema, registerSchema } from '@/shared/lib/zod';
@@ -21,6 +21,10 @@ type RegisterUserState = {
   message?: string;
 };
 
+type EditProfileType = RegisterUserState & {
+  successMessage?: string;
+};
+
 type LoginUserState = {
   errors?: {
     email?: string[];
@@ -28,6 +32,62 @@ type LoginUserState = {
   };
   message?: string;
 };
+
+export async function editProfile(
+  prevState: EditProfileType,
+  formData: FormData,
+): Promise<EditProfileType> {
+  const session = await auth();
+
+  if (!session) {
+    return {};
+  }
+  const validatedFields = registerSchema.safeParse({
+    email: formData.get('email'),
+    name: formData.get('name'),
+    lastName: formData.get('lastName'),
+    password: formData.get('password'),
+    confirmPassword: formData.get('confirmPassword'),
+    inn: formData.get('inn'),
+    phone: formData.get('phone'),
+  });
+
+  console.log(validatedFields);
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  const iUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
+    where: (usersTabe, { eq }) => eq(usersTabe.email, session?.user.email),
+  });
+
+  if (!iUser) {
+    return {};
+  }
+
+  if (iUser.email !== validatedFields.data.email) {
+    const findUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
+      where: (usersTabe, { eq }) => eq(usersTabe.email, validatedFields.data.email),
+    });
+
+    if (findUser) {
+      return {
+        message: 'Такой пользователь существует',
+      };
+    }
+  }
+
+  await db
+    .update(usersTable)
+    .set({ ...validatedFields.data, password: hashSync(validatedFields.data.password, 10) });
+
+  return {
+    successMessage: 'Данный успешно изменены',
+  };
+}
 
 export async function loginUser(
   prevState: LoginUserState,

@@ -19,7 +19,7 @@ export default async function ProfilePage() {
           <div className="profile__inner">
             {session ? (
               <>
-                <FormProfile />
+                <FormProfile session={session} />
                 <ProfileMenu />
               </>
             ) : (
