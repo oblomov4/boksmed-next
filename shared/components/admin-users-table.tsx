@@ -1,36 +1,53 @@
+import Link from 'next/link';
 import React from 'react';
 
 interface Props {
   info: boolean;
+  name: string;
+  lastName: string;
+  id: number;
+  phone: string;
+  inn: string;
+  role: string;
 }
 
-export const AdminUsersTable: React.FC<Props> = ({ info }) => {
+export const AdminUsersTable: React.FC<Props> = ({
+  info,
+  name,
+  lastName,
+  id,
+  phone,
+  inn,
+  role,
+}) => {
   return (
     <div className="admin-users-table">
       {info && (
         <>
           <div className="cell cell-title">№</div>
           <div className="cell cell-title">Пользователь</div>
-          <div className="cell cell-title">данные организации</div>
+          <div className="cell cell-title">Телефон</div>
           <div className="cell cell-title">ИНН</div>
           <div className="cell cell-title">статус</div>
         </>
       )}
 
       <div className="cell cell--decor" data-label="№">
-        1
+        {id}
       </div>
       <div className="cell cell--decor" data-label="Пользователь">
-        Суворова В.П
+        <Link href={`/admin/users/${id}`}>
+          {name} {lastName}
+        </Link>
       </div>
-      <div className="cell cell--decor" data-label="данные организации">
-        ИП Суворова
+      <div className="cell cell--decor" data-label="телефон">
+        {phone}
       </div>
       <div className="cell cell--decor" data-label="ИНН">
-        ИНН 4567894321
+        {inn}
       </div>
       <div className="cell cell--decor" data-label="статус">
-        гость
+        {role}
       </div>
     </div>
   );
