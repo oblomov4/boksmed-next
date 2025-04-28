@@ -1968,6 +1968,7 @@ input {
 
 .cell-title,
 .admin-title {
+  border-top: 1px solid #497ae2;
   font-size: 10px;
   font-weight: 500;
 }
@@ -1997,10 +1998,10 @@ input {
   font-size: 20px;
 }
 
-.cell img {
+/* .cell img {
   width: 100%;
   height: 100%;
-}
+} */
 
 .grade-box {
   display: flex;
@@ -2316,6 +2317,117 @@ input {
   display: grid;
   grid-template-columns: 50px minmax(50px, 350px) minmax(50px, 250px) auto auto;
   margin-bottom: 20px;
+}
+
+.events__top {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 30px;
+}
+
+.event-add-wrapper {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(247, 249, 251, 0.9);
+  transition: all 0.3s;
+  display: none;
+}
+
+.event-add-wrapper.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.event-add {
+  max-width: 809px;
+  background-color: #fff;
+  height: 100%;
+}
+
+.event-add__save {
+  position: relative;
+}
+
+.event-add__save-exit {
+  position: absolute;
+  right: 20px;
+  top: 14px;
+}
+
+.event-add__btn {
+  width: 100%;
+  margin-bottom: 40px;
+}
+.event-add__box {
+  padding: 30px 105px 25px 105px;
+  border-bottom: 1px solid #497ae2;
+}
+.event-add__box-title {
+  font-weight: 500;
+  font-size: 10px;
+  margin-bottom: 20px;
+}
+
+.event-add__box-input {
+  width: 100%;
+  outline: none;
+}
+
+.preview {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.warnings-upload {
+  margin-top: 20px;
+  color: red;
+}
+
+.image-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.event-success {
+  color: green;
+  margin-top: 20px;
+}
+
+.event-err {
+  color: red;
+  margin-top: 20px;
+}
+
+.events-table {
+  display: grid;
+  grid-template-columns: minmax(50px, 179px) auto minmax(50px, 350px) minmax(50px, 153px) auto;
+  margin-bottom: 20px;
+}
+
+.category-item {
+  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1a3e8b;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.category-item-box-btn {
+  display: flex;
+  gap: 10px;
+}
+
+.remove {
+  display: none;
 }
 
 /* анимации */

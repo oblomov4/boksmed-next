@@ -2,38 +2,73 @@
 import React from 'react';
 import { AboutBox } from './about-box';
 import clsx from 'clsx';
+import { SelectEventsTable } from '@/db/schema';
 
-export const AboutWrapper: React.FC = () => {
+interface Props {
+  events: SelectEventsTable[];
+}
+
+export const AboutWrapper: React.FC<Props> = ({ events }) => {
   const [showAll, setShowAll] = React.useState<boolean>(false);
-
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <div className="about__wrapper">
       <div className="about__inner">
-        {arr.map((item, index) => {
+        {events.map((item, index) => {
           if (!showAll) {
             if (index >= 6) {
-              return <AboutBox key={index} className="hidden" />;
+              return (
+                <AboutBox
+                  imageUrl={item.imageUrl!}
+                  description={item.description}
+                  title={item.title}
+                  key={index}
+                  className="hidden"
+                />
+              );
             } else {
-              return <AboutBox key={index} />;
+              return (
+                <AboutBox
+                  imageUrl={item.imageUrl!}
+                  description={item.description}
+                  title={item.title}
+                  key={index}
+                />
+              );
             }
           } else {
             if (index >= 6) {
-              return <AboutBox key={index} className="show" />;
+              return (
+                <AboutBox
+                  imageUrl={item.imageUrl!}
+                  description={item.description}
+                  title={item.title}
+                  key={index}
+                  className="show"
+                />
+              );
             } else {
-              return <AboutBox key={index} />;
+              return (
+                <AboutBox
+                  imageUrl={item.imageUrl!}
+                  description={item.description}
+                  title={item.title}
+                  key={index}
+                />
+              );
             }
           }
         })}
       </div>
 
-      <button
-        className={clsx('about__btn', !showAll && 'rotate-btn')}
-        onClick={() => setShowAll(!showAll)}>
-        {!showAll && 'показать еще'}
-        {showAll && 'скрыть'}
-      </button>
+      {events.length >= 6 && (
+        <button
+          className={clsx('about__btn', !showAll && 'rotate-btn')}
+          onClick={() => setShowAll(!showAll)}>
+          {!showAll && 'показать еще'}
+          {showAll && 'скрыть'}
+        </button>
+      )}
     </div>
   );
 };

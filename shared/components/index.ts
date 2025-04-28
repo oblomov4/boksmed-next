@@ -28,4 +28,8 @@ export { AdminLoginForm } from './admin-login-form';
 export { SidebarAdmin } from './sidebar-admin';
 export { AdminOrderList } from './admin-order-list';
 export { AdminUsersTable } from './admin-users-table';
+export { AboutAdmin } from './about-admin';
+export { AdminEventTable } from './admin-event-table';
+export { AdminCategory } from './admin-category';
+export { CategoryItem } from './category-item';
 export { Footer } from './footer';

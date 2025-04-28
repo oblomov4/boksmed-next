@@ -2,12 +2,16 @@
 import clsx from 'clsx';
 import React from 'react';
 import { AboutBoxModal } from './about-box-modal';
+import Image from 'next/image';
 
 interface Props {
   className?: string;
+  title: string;
+  description: string;
+  imageUrl: string;
 }
 
-export const AboutBox: React.FC<Props> = ({ className }) => {
+export const AboutBox: React.FC<Props> = ({ className, title, description, imageUrl }) => {
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -26,13 +30,19 @@ export const AboutBox: React.FC<Props> = ({ className }) => {
   return (
     <>
       <div className={clsx('about__box', className)} onClick={() => setShowModal(true)}>
-        <img src="images/about1.png" alt="about" className="about__box-img" />
+        <Image width={315} height={315} src={imageUrl} alt="about" className="about__box-img" />
         <div className="about__box-bottom">
-          <p className="about__box-title">Название мероприятия (события)</p>
+          <p className="about__box-title">{title}</p>
           <img src="images/about-bottom.svg" alt="" />
         </div>
       </div>
-      <AboutBoxModal showModal={showModal} setShowModal={setShowModal} />
+      <AboutBoxModal
+        description={description}
+        title={title}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        imageUrl={imageUrl}
+      />
     </>
   );
 };
