@@ -71,6 +71,10 @@ export const producesiltTable = pgTable('producesilts', {
   updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
 });
 
+export const producesiltTableRelations = relations(producesiltTable, ({ many }) => ({
+  products: many(productTable),
+}));
+
 export type InsertProducesiltTable = typeof producesiltTable.$inferInsert;
 export type SelectProducesiltTable = typeof producesiltTable.$inferSelect;
 
@@ -82,24 +86,35 @@ export const productTable = pgTable('products', {
 
   quantity: integer().notNull(),
 
-  price: integer(),
+  price: integer().notNull(),
   imageUrl: varchar(),
 
   videoUrl: varchar(),
 
-  specifications: text(),
+  specifications: text().notNull(),
 
-  categoryId: integer('category_id'),
+  visible: boolean().default(true).notNull(),
+
+  categoryId: integer('category_id').notNull(),
+  producesiltId: integer('producesilt_id').notNull(),
 
   createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
   updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
 });
+
+export type InsertProductTable = typeof productTable.$inferInsert;
+export type SelectProductTable = typeof productTable.$inferSelect;
 
 export const productTableRelations = relations(productTable, ({ one, many }) => ({
   category: one(categoryTable, {
     fields: [productTable.categoryId],
     references: [categoryTable.id],
     relationName: 'category',
+  }),
+  producesilt: one(producesiltTable, {
+    fields: [productTable.producesiltId],
+    references: [producesiltTable.id],
+    relationName: 'producesilt',
   }),
   reviews: many(reviewsTable, {
     relationName: 'reviews',

@@ -34,4 +34,6 @@ export { AdminCategory } from './admin-category';
 export { CategoryItem } from './category-item';
 export { AdminProducesilt } from './admin-producesilt';
 export { ProducesiltAdminItem } from './producesilt-admin-item';
+export { AdminProduct } from './admin-product';
+export { AdminProductItem } from './admin-product-item';
 export { Footer } from './footer';

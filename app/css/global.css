@@ -2319,6 +2319,30 @@ input {
   margin-bottom: 20px;
 }
 
+.product-table-admin {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.quantity {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quantity input {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.quantity button {
+  background-color: #3257a4;
+  color: #fff;
+  padding: 6px;
+  border-radius: 6px;
+}
+
 .events__top {
   display: flex;
   justify-content: end;
