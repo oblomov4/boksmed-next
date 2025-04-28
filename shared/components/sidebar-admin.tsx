@@ -12,6 +12,7 @@ export const SidebarAdmin: React.FC = () => {
       <a href="#">Обратная связь</a>
       <a href="#">Товары</a>
       <Link href="/admin/category">Категории</Link>
+      <Link href="/admin/producesilt">Производители</Link>
       <Link href="/admin/about">Мероприятия</Link>
     </aside>
   );

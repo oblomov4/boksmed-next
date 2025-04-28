@@ -2,7 +2,7 @@ import { db } from '@/db';
 import { SelectCategoryTable } from '@/db/schema';
 import { AdminCategory, CategoryItem } from '@/shared/components';
 
-export default async function CategoryPage() {
+export default async function CategoryAdminPage() {
   const categories: SelectCategoryTable[] | undefined = await db.query.categoryTable.findMany();
 
   console.log(categories);

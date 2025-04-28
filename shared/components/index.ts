@@ -32,4 +32,6 @@ export { AboutAdmin } from './about-admin';
 export { AdminEventTable } from './admin-event-table';
 export { AdminCategory } from './admin-category';
 export { CategoryItem } from './category-item';
+export { AdminProducesilt } from './admin-producesilt';
+export { ProducesiltAdminItem } from './producesilt-admin-item';
 export { Footer } from './footer';

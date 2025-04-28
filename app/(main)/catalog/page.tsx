@@ -1,6 +1,10 @@
+import { db } from '@/db';
+import { SelectCategoryTable } from '@/db/schema';
 import { BreadCrumps, Equipment } from '@/shared/components';
 
-export default function CatalogPage() {
+export default async function CatalogPage() {
+  const catalog: SelectCategoryTable[] | undefined = await db.query.categoryTable.findMany();
+
   return (
     <>
       <BreadCrumps
@@ -9,7 +13,7 @@ export default function CatalogPage() {
           { id: 1, text: 'Каталог', link: '/catalog' },
         ]}
       />
-      <Equipment all={true} />
+      <Equipment catalog={catalog} all={true} />
     </>
   );
 }
