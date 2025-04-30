@@ -36,4 +36,8 @@ export { AdminProducesilt } from './admin-producesilt';
 export { ProducesiltAdminItem } from './producesilt-admin-item';
 export { AdminProduct } from './admin-product';
 export { AdminProductItem } from './admin-product-item';
+export { ProductItem } from './product-item';
+export { ReviewsBox } from './reviews-box';
+export { Filters } from './filters';
+export { Search } from './search';
 export { Footer } from './footer';

@@ -11,74 +11,9 @@ import {
 } from 'drizzle-orm/pg-core';
 
 export const roleEnum = pgEnum('role', ['ADMIN', 'USER']);
+export const raitingEnum = pgEnum('raiting', ['1', '2', '3', '4', '5']);
 
-export const usersTable = pgTable('users', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  email: varchar().notNull().unique(),
-  name: varchar().notNull(),
-  lastName: varchar().notNull(),
-  inn: varchar().notNull(),
-  password: varchar().notNull(),
-  phone: varchar().notNull(),
-  role: roleEnum().default('USER').notNull(),
-
-  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
-  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
-});
-
-export const usersTableRelations = relations(usersTable, ({ many }) => ({
-  reviews: many(reviewsTable),
-}));
-
-export type InsertUserTable = typeof usersTable.$inferInsert;
-export type SelectUserTable = typeof usersTable.$inferSelect;
-
-export const eventsTable = pgTable('events', {
-  id: serial().primaryKey(),
-  title: varchar().notNull(),
-  description: text().notNull(),
-  visible: boolean().default(false).notNull(),
-  imageUrl: varchar(),
-});
-
-export type InsertEventsTable = typeof eventsTable.$inferInsert;
-export type SelectEventsTable = typeof eventsTable.$inferSelect;
-
-export const categoryTable = pgTable('categories', {
-  id: serial().primaryKey(),
-  title: varchar().notNull(),
-  imageUrl: varchar(),
-
-  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
-  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
-});
-
-export const categoryTableRelations = relations(categoryTable, ({ many }) => ({
-  products: many(productTable),
-}));
-
-export type InsertCategoryTable = typeof categoryTable.$inferInsert;
-export type SelectCategoryTable = typeof categoryTable.$inferSelect;
-
-export const producesiltTable = pgTable('producesilts', {
-  id: serial().primaryKey(),
-
-  title: varchar().notNull(),
-  description: varchar().notNull(),
-  imageUrl: varchar(),
-
-  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
-  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
-});
-
-export const producesiltTableRelations = relations(producesiltTable, ({ many }) => ({
-  products: many(productTable),
-}));
-
-export type InsertProducesiltTable = typeof producesiltTable.$inferInsert;
-export type SelectProducesiltTable = typeof producesiltTable.$inferSelect;
-
-export const productTable = pgTable('products', {
+export const products = pgTable('products', {
   id: serial().primaryKey(),
 
   title: varchar().notNull(),
@@ -102,45 +37,106 @@ export const productTable = pgTable('products', {
   updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
 });
 
-export type InsertProductTable = typeof productTable.$inferInsert;
-export type SelectProductTable = typeof productTable.$inferSelect;
+export const users = pgTable('users', {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  email: varchar().notNull().unique(),
+  name: varchar().notNull(),
+  lastName: varchar().notNull(),
+  inn: varchar().notNull(),
+  password: varchar().notNull(),
+  phone: varchar().notNull(),
+  role: roleEnum().default('USER').notNull(),
 
-export const productTableRelations = relations(productTable, ({ one, many }) => ({
-  category: one(categoryTable, {
-    fields: [productTable.categoryId],
-    references: [categoryTable.id],
+  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
+});
+
+export const reviews = pgTable('reviews', {
+  id: serial().primaryKey(),
+  text: varchar(),
+  raiting: raitingEnum(),
+  productId: integer('product_id').references(() => products.id),
+  userId: integer('user_id').references(() => users.id),
+});
+
+export const events = pgTable('events', {
+  id: serial().primaryKey(),
+  title: varchar().notNull(),
+  description: text().notNull(),
+  visible: boolean().default(false).notNull(),
+  imageUrl: varchar(),
+});
+
+export const categories = pgTable('categories', {
+  id: serial().primaryKey(),
+  title: varchar().notNull(),
+  imageUrl: varchar(),
+
+  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
+});
+
+export const producesilts = pgTable('producesilts', {
+  id: serial().primaryKey(),
+
+  title: varchar().notNull(),
+  description: varchar().notNull(),
+  imageUrl: varchar(),
+
+  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
+});
+
+export type InsertUserTable = typeof users.$inferInsert;
+export type SelectUserTable = typeof users.$inferSelect;
+
+export type InsertEventsTable = typeof events.$inferInsert;
+export type SelectEventsTable = typeof events.$inferSelect;
+
+export type InsertCategoryTable = typeof categories.$inferInsert;
+export type SelectCategoryTable = typeof categories.$inferSelect;
+
+export type InsertProducesiltTable = typeof producesilts.$inferInsert;
+export type SelectProducesiltTable = typeof producesilts.$inferSelect;
+
+export type InsertProductTable = typeof products.$inferInsert;
+export type SelectProductTable = typeof products.$inferSelect;
+
+export const usersRelations = relations(users, ({ many }) => ({
+  reviews: many(reviews),
+}));
+
+export const productsRelations = relations(products, ({ one, many }) => ({
+  category: one(categories, {
+    fields: [products.categoryId],
+    references: [categories.id],
     relationName: 'category',
   }),
-  producesilt: one(producesiltTable, {
-    fields: [productTable.producesiltId],
-    references: [producesiltTable.id],
+  producesilt: one(producesilts, {
+    fields: [products.producesiltId],
+    references: [producesilts.id],
     relationName: 'producesilt',
   }),
-  reviews: many(reviewsTable, {
-    relationName: 'reviews',
+  reviews: many(reviews),
+}));
+
+export const reviewsRelations = relations(reviews, ({ one }) => ({
+  user: one(users, {
+    fields: [reviews.userId],
+    references: [users.id],
+    relationName: 'user',
+  }),
+  product: one(products, {
+    fields: [reviews.productId],
+    references: [products.id],
+    relationName: 'product',
   }),
 }));
 
-export const raitingEnum = pgEnum('raiting', ['1', '2', '3', '4', '5']);
+export const producesiltsRelations = relations(producesilts, ({ many }) => ({
+  products: many(products),
+}));
 
-export const reviewsTable = pgTable('rewiews', {
-  id: serial().primaryKey(),
-  name: varchar().notNull(),
-  text: varchar().notNull(),
-  raiting: raitingEnum(),
-  productId: integer('product_id'),
-  userId: integer('user_id'),
-});
-
-export const reviewsTableRelations = relations(reviewsTable, ({ one }) => ({
-  user: one(usersTable, {
-    fields: [reviewsTable.userId],
-    references: [usersTable.id],
-    relationName: 'user',
-  }),
-  product: one(productTable, {
-    fields: [reviewsTable.productId],
-    references: [productTable.id],
-    relationName: 'product',
-  }),
+export const categoriesRelations = relations(categories, ({ many }) => ({
+  products: many(products),
 }));

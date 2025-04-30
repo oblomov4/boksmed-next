@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { eventsTable } from '@/db/schema';
+import { events} from '@/db/schema';
 import { NextResponse, type NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
 
     const imageUrl = '/assets/' + res.imageUrl;
 
-    await db.insert(eventsTable).values({
+    await db.insert(events).values({
       title: res.title,
       description: res.description,
       imageUrl,

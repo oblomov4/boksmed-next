@@ -3,7 +3,7 @@ import { SelectCategoryTable } from '@/db/schema';
 import { BreadCrumps, Equipment } from '@/shared/components';
 
 export default async function CatalogPage() {
-  const catalog: SelectCategoryTable[] | undefined = await db.query.categoryTable.findMany();
+  const catalog: SelectCategoryTable[] | undefined = await db.query.categories.findMany();
 
   return (
     <>

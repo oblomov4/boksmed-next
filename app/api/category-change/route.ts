@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { categoryTable, SelectCategoryTable } from '@/db/schema';
+import { categories, SelectCategoryTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { NextResponse, type NextRequest } from 'next/server';
 
@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
   try {
     const res = await req.json();
 
-    const category: SelectCategoryTable | undefined = await db.query.categoryTable.findFirst({
-      where: (categoryTable, { eq }) => eq(categoryTable.id, res.id),
+    const category: SelectCategoryTable | undefined = await db.query.categories.findFirst({
+      where: (categories, { eq }) => eq(categories.id, res.id),
     });
 
     if (!category) {
@@ -31,9 +31,9 @@ export async function POST(req: NextRequest) {
     }
 
     await db
-      .update(categoryTable)
+      .update(categories)
       .set({ ...updatedCategory })
-      .where(eq(categoryTable.id, res.id));
+      .where(eq(categories.id, res.id));
 
     return NextResponse.json({ message: 'Категория обновлена!' });
   } catch (err) {

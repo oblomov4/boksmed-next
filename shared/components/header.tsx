@@ -7,6 +7,7 @@ import Telegram from '@/public/images/telegram.svg';
 import Whatsapp from '@/public/images/whatsapp.svg';
 import ShoppingCart from '@/public/images/shopping-cart.svg';
 import Doctor from '@/public/images/doctor.svg';
+import { Search } from './search';
 
 export const Header: React.FC = () => {
   return (
@@ -26,14 +27,8 @@ export const Header: React.FC = () => {
             Каталог
           </Link>
 
-          <div className="header__top-input-wrapper">
-            <input
-              className="header__top-input"
-              type="text"
-              placeholder="Поиск медицинского оборудования"
-            />
-          </div>
-
+          <Search />
+          
           <Link className="header__top-order-call" href="/call-order">
             Заказать обратный звонок
           </Link>

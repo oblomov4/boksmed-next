@@ -3,11 +3,11 @@ import { SelectCategoryTable, SelectProducesiltTable, SelectProductTable } from 
 import { AdminProduct, AdminProductItem } from '@/shared/components';
 
 export default async function ProductAdminPage() {
-  const categories: SelectCategoryTable[] = await db.query.categoryTable.findMany();
+  const categories: SelectCategoryTable[] = await db.query.categories.findMany();
 
-  const producesilt: SelectProducesiltTable[] = await db.query.producesiltTable.findMany();
+  const producesilt: SelectProducesiltTable[] = await db.query.producesilts.findMany();
 
-  const products: SelectProductTable[] = await db.query.productTable.findMany();
+  const products: SelectProductTable[] = await db.query.products.findMany();
 
   if (categories.length === 0) {
     return <h1 className="title main-content-title">Чтобы продожить добавьте категории</h1>;

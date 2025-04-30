@@ -14,6 +14,7 @@ export const SidebarAdmin: React.FC = () => {
       <Link href="/admin/category">Категории</Link>
       <Link href="/admin/producesilt">Производители</Link>
       <Link href="/admin/about">Мероприятия</Link>
+      <Link href="/">Назад к сайту</Link>
     </aside>
   );
 };

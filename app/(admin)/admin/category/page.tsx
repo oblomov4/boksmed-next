@@ -3,7 +3,7 @@ import { SelectCategoryTable } from '@/db/schema';
 import { AdminCategory, CategoryItem } from '@/shared/components';
 
 export default async function CategoryAdminPage() {
-  const categories: SelectCategoryTable[] | undefined = await db.query.categoryTable.findMany();
+  const categories: SelectCategoryTable[] | undefined = await db.query.categories.findMany();
 
   console.log(categories);
 

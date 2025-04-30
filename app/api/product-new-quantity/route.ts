@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { productTable } from '@/db/schema';
+import { products } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { NextResponse, type NextRequest } from 'next/server';
 
@@ -8,11 +8,11 @@ export async function POST(req: NextRequest) {
     const res = await req.json();
 
     await db
-      .update(productTable)
+      .update(products)
       .set({
         quantity: res.quantity,
       })
-      .where(eq(productTable.id, res.id));
+      .where(eq(products.id, res.id));
 
     return NextResponse.json({ success: true });
   } catch (err) {

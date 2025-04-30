@@ -19,7 +19,7 @@ export const AdminProduct: React.FC<Props> = ({ categories, producesilt }) => {
         </button>
       </div>
 
-      <ProductAdd show={show} producesilt={producesilt} categories={categories} />
+      <ProductAdd show={show} setShow={setShow} producesilt={producesilt} categories={categories} />
     </>
   );
 };

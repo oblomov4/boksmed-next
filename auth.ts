@@ -26,7 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
-        const findUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
+        const findUser: SelectUserTable | undefined = await db.query.users.findFirst({
           where: (users, { eq }) => eq(users.email, credentials.email as string),
         });
 
@@ -58,7 +58,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return token;
       }
 
-      const findUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
+      const findUser: SelectUserTable | undefined = await db.query.users.findFirst({
         where: (users, { eq }) => eq(users.email, token.email as string),
       });
 

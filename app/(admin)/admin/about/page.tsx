@@ -3,7 +3,7 @@ import { SelectEventsTable } from '@/db/schema';
 import { AboutAdmin, AdminEventTable } from '@/shared/components';
 
 export default async function AboutPage() {
-  const events: SelectEventsTable[] | undefined = await db.query.eventsTable.findMany();
+  const events: SelectEventsTable[] | undefined = await db.query.events.findMany();
 
   return (
     <>

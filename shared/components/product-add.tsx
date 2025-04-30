@@ -8,6 +8,7 @@ interface Props {
   show: boolean;
   categories: SelectCategoryTable[];
   producesilt: SelectProducesiltTable[];
+  setShow: (value: boolean) => void;
 }
 
 type InputsType = {
@@ -23,7 +24,7 @@ type ServerUploadFileType = {
   fileName?: string;
 };
 
-export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt }) => {
+export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const [cats, setCats] = React.useState<string>(String(categories[0].id));
@@ -124,11 +125,18 @@ export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt }) =
           specifications: '',
         });
 
-        redirect('/admin/product/');
+        setShow(false);
+        setServerUploadFile(null);
       }
     } catch (err) {
       console.log(err);
     }
+
+    redirect('/admin/product');
+  }
+
+  function handleClickExit() {
+    setShow(false);
   }
 
   return (
@@ -138,7 +146,7 @@ export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt }) =
           <button className="promo__box-link event-add__btn" onClick={handleClickSave}>
             Сохранить
           </button>
-          <button className="event-add__save-exit">
+          <button className="event-add__save-exit" onClick={handleClickExit}>
             <Image width={16} height={16} src="/images/close-white.png" alt="exit" />
           </button>
         </div>

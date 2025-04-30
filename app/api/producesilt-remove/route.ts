@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { producesiltTable } from '@/db/schema';
+import { producesilts } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { NextResponse, type NextRequest } from 'next/server';
 
@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       throw new Error();
     }
 
-    await db.delete(producesiltTable).where(eq(producesiltTable.id, res.id));
+    await db.delete(producesilts).where(eq(producesilts.id, res.id));
 
     return NextResponse.json({
       success: true,

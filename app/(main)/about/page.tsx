@@ -3,8 +3,8 @@ import { SelectEventsTable } from '@/db/schema';
 import { AboutWrapper, BreadCrumps } from '@/shared/components';
 
 export default async function AboutPage() {
-  const events: SelectEventsTable[] | undefined = await db.query.eventsTable.findMany({
-    where: (eventsTable, { eq }) => eq(eventsTable.visible, true),
+  const events: SelectEventsTable[] | undefined = await db.query.events.findMany({
+    where: (events, { eq }) => eq(events.visible, true),
   });
 
   return (

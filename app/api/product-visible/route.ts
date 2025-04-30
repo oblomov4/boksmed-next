@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { productTable } from '@/db/schema';
+import { products } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { NextResponse, type NextRequest } from 'next/server';
 
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
 
     console.log(res);
 
-    await db.update(productTable).set({ visible: res.visible }).where(eq(productTable.id, res.id));
+    await db.update(products).set({ visible: res.visible }).where(eq(products.id, res.id));
 
     return NextResponse.json({ success: true });
   } catch (err) {

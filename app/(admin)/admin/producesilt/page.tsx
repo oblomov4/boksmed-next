@@ -4,7 +4,7 @@ import { AdminProducesilt, ProducesiltAdminItem } from '@/shared/components';
 
 export default async function ProducesiltAdminPage() {
   const producesilts: SelectProducesiltTable[] | undefined =
-    await db.query.producesiltTable.findMany();
+    await db.query.producesilts.findMany();
 
   console.log(producesilts);
 

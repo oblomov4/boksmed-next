@@ -2,7 +2,7 @@
 
 import { auth, signIn } from '@/auth';
 import { db } from '@/db';
-import { SelectUserTable, usersTable } from '@/db/schema';
+import { SelectUserTable, users } from '@/db/schema';
 import { loginSchema, registerSchema } from '@/shared/lib/zod';
 import { hashSync } from 'bcrypt';
 import { CredentialsSignin } from 'next-auth';
@@ -60,7 +60,7 @@ export async function editProfile(
     };
   }
 
-  const iUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
+  const iUser: SelectUserTable | undefined = await db.query.users.findFirst({
     where: (usersTabe, { eq }) => eq(usersTabe.email, session?.user.email),
   });
 
@@ -69,7 +69,7 @@ export async function editProfile(
   }
 
   if (iUser.email !== validatedFields.data.email) {
-    const findUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
+    const findUser: SelectUserTable | undefined = await db.query.users.findFirst({
       where: (usersTabe, { eq }) => eq(usersTabe.email, validatedFields.data.email),
     });
 
@@ -81,7 +81,7 @@ export async function editProfile(
   }
 
   await db
-    .update(usersTable)
+    .update(users)
     .set({ ...validatedFields.data, password: hashSync(validatedFields.data.password, 10) });
 
   return {
@@ -148,7 +148,7 @@ export async function registerUser(
   }
 
   try {
-    const findUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
+    const findUser: SelectUserTable | undefined = await db.query.users.findFirst({
       where: (users, { eq }) => eq(users.email, validatedFields.data.email),
     });
 
@@ -158,7 +158,7 @@ export async function registerUser(
       };
     }
 
-    await db.insert(usersTable).values({
+    await db.insert(users).values({
       email: validatedFields.data.email,
       name: validatedFields.data.name,
       lastName: validatedFields.data.lastName,
