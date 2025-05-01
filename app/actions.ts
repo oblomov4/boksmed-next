@@ -2,8 +2,8 @@
 
 import { auth, signIn } from '@/auth';
 import { db } from '@/db';
-import { SelectUserTable, users } from '@/db/schema';
-import { loginSchema, registerSchema } from '@/shared/lib/zod';
+import { ordersCall, SelectUserTable, users } from '@/db/schema';
+import { loginSchema, orderCallSchema, registerSchema } from '@/shared/lib/zod';
 import { hashSync } from 'bcrypt';
 import { CredentialsSignin } from 'next-auth';
 import { redirect } from 'next/navigation';
@@ -32,6 +32,46 @@ type LoginUserState = {
   };
   message?: string;
 };
+
+type OrderCallType = {
+  message?: string;
+  errors?: {
+    name?: string[];
+    phone?: string[];
+    message?: string[];
+  };
+  errMessage?: string;
+};
+
+export async function orderCall(
+  prevState: OrderCallType,
+  formData: FormData,
+): Promise<OrderCallType> {
+  try {
+    const validatedFields = orderCallSchema.safeParse({
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
+    });
+
+    console.log(validatedFields);
+
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+      };
+    }
+
+    await db.insert(ordersCall).values({ ...validatedFields.data });
+
+    return { message: 'Благодарим за обращение! Скоро мы с вами свяжимся!' };
+  } catch (err) {
+    console.log(err);
+    return {
+      errMessage: 'Что-то пошло не так попробуйте позже!',
+    };
+  }
+}
 
 export async function editProfile(
   prevState: EditProfileType,

@@ -4,8 +4,8 @@ import { SelectUserTable } from '@/db/schema';
 export default async function AdminUserPage({ params }: { params: Promise<{ id: number }> }) {
   const { id } = await params;
 
-  const findUser: SelectUserTable | undefined = await db.query.usersTable.findFirst({
-    where: (usersTable, { eq }) => eq(usersTable.id, id),
+  const findUser: SelectUserTable | undefined = await db.query.users.findFirst({
+    where: (users, { eq }) => eq(users.id, id),
   });
 
   if (!findUser) {

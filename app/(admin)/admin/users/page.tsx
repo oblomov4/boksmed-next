@@ -2,7 +2,7 @@ import { db } from '@/db';
 import { AdminUsersTable } from '@/shared/components';
 
 export default async function UsersPage() {
-  const users = await db.query.usersTable.findMany();
+  const users = await db.query.users.findMany();
 
   return (
     <>

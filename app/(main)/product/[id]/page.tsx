@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { db } from '@/db';
-import { BreadCrumps, ReviewsBox } from '@/shared/components';
+import { BreadCrumps, Buttons, ReviewsBox } from '@/shared/components';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+
 export default async function ProductPage({ params }: { params: Promise<{ id: number }> }) {
   const { id } = await params;
 
@@ -106,10 +107,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: nu
               </div>
               <p className="product-info__price">{product.price}₽</p>
 
-              <div className="product-info__buttons">
-                <button className="promo__box-link product-info__btn">В корзину</button>
-                <button className="product-info__button product-info__btn">Купить в 1 клик</button>
-              </div>
+              <Buttons id={id} />
 
               <div className="collapsible-section">
                 <div className="collapsible-section__header">

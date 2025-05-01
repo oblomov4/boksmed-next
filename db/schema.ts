@@ -87,6 +87,45 @@ export const producesilts = pgTable('producesilts', {
   updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
 });
 
+export const ordersCall = pgTable('orders_call', {
+  id: serial().primaryKey(),
+  name: varchar().notNull(),
+  phone: varchar().notNull(),
+  message: varchar().notNull(),
+});
+
+export const carts = pgTable('carts', {
+  id: serial().primaryKey(),
+
+  userId: integer('user_id')
+    .unique()
+    .references(() => users.id),
+
+  token: text('token').notNull(),
+
+  totalAmount: integer('total_amount').default(0),
+
+  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
+});
+
+export const cartsItems = pgTable('carts_items', {
+  id: serial().primaryKey(),
+
+  cartId: integer('cart_id').references(() => carts.id),
+  productId: integer('product_id').references(() => products.id),
+  quantity: integer('quantity').default(1),
+
+  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
+});
+
+export type InsertCartsTable = typeof carts.$inferInsert;
+export type SelectCartsTable = typeof carts.$inferSelect;
+
+export type InsertOrdersCallTable = typeof ordersCall.$inferInsert;
+export type SelectOrdersCallTable = typeof ordersCall.$inferSelect;
+
 export type InsertUserTable = typeof users.$inferInsert;
 export type SelectUserTable = typeof users.$inferSelect;
 
@@ -102,8 +141,28 @@ export type SelectProducesiltTable = typeof producesilts.$inferSelect;
 export type InsertProductTable = typeof products.$inferInsert;
 export type SelectProductTable = typeof products.$inferSelect;
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(users, ({ many, one }) => ({
   reviews: many(reviews),
+  carts: one(carts),
+}));
+
+export const cartsRelations = relations(carts, ({ one, many }) => ({
+  users: one(users, {
+    fields: [carts.userId],
+    references: [users.id],
+  }),
+  cartsItems: many(cartsItems),
+}));
+
+export const cartsItemsRelations = relations(cartsItems, ({ one }) => ({
+  carts: one(carts, {
+    fields: [cartsItems.cartId],
+    references: [carts.id],
+  }),
+  products: one(products, {
+    fields: [cartsItems.productId],
+    references: [products.id],
+  }),
 }));
 
 export const productsRelations = relations(products, ({ one, many }) => ({
@@ -118,6 +177,7 @@ export const productsRelations = relations(products, ({ one, many }) => ({
     relationName: 'producesilt',
   }),
   reviews: many(reviews),
+  cartsItems: many(cartsItems),
 }));
 
 export const reviewsRelations = relations(reviews, ({ one }) => ({

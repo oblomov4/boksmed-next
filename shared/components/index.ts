@@ -40,4 +40,7 @@ export { ProductItem } from './product-item';
 export { ReviewsBox } from './reviews-box';
 export { Filters } from './filters';
 export { Search } from './search';
+export { OrderCallItem } from './order-call-item';
+export { CartTable } from './cart-table';
+export { Buttons } from './buttons';
 export { Footer } from './footer';

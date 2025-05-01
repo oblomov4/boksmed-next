@@ -33,3 +33,9 @@ export const registerSchema = loginSchema
     message: 'Пароли не совпадают',
     path: ['confirmPassword'],
   });
+
+export const orderCallSchema = z.object({
+  name: z.string().min(2, 'Имя обязательное поле'),
+  phone: z.string().min(10, 'Телефон обязательное поле'),
+  message: z.string().min(5, 'Сообщение обязательное поле'),
+});
