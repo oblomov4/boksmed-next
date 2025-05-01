@@ -21,7 +21,7 @@ export { ProducesiltItem } from './producesilt-item';
 export { FormProfile } from './form-profile';
 export { ProfileMenu } from './profile-menu';
 export { AboutWrapper } from './about-wrapper';
-export { OrderItemWrapper } from './order-item-wrapper';
+export { OrderTable } from './order-table';
 export { ReviewsItemWrapper } from './reviews-item-wrapper';
 export { Cart } from './cart';
 export { AdminLoginForm } from './admin-login-form';

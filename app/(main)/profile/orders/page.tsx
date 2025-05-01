@@ -1,6 +1,30 @@
-import { BreadCrumps, OrderItemWrapper } from '@/shared/components';
+import { auth } from '@/auth';
+import { db } from '@/db';
+import { SelectProductTable } from '@/db/schema';
+import { BreadCrumps, OrderTable } from '@/shared/components';
+import { redirect } from 'next/navigation';
 
-export default function OrdersPage() {
+type ItemsType = {
+  id: number;
+  cartId: number;
+  productId: number;
+  quantity: number;
+  createdAt: string;
+  updatedAt: string;
+  products: SelectProductTable;
+};
+
+export default async function OrdersPage() {
+  const session = await auth();
+
+  if (!session) {
+    redirect('/login');
+  }
+
+  const orders = await db.query.orders.findMany({
+    where: (orders, { eq }) => eq(orders.userId, Number(session.user.id)),
+  });
+
   return (
     <>
       <BreadCrumps
@@ -27,7 +51,16 @@ export default function OrdersPage() {
         <div className="container">
           <h2 className="title">Заказы</h2>
           <div className="table-background">
-            <OrderItemWrapper />
+            {orders.map((item, index) => (
+              <OrderTable
+                key={item.id}
+                imageUrl={(item.items as Array<ItemsType>)[0].products.imageUrl!}
+                title={(item.items as Array<ItemsType>)[0].products.title}
+                number={index + 1}
+                totalAmount={(item.items as Array<ItemsType>)[0].products.price}
+                quantity={(item.items as Array<ItemsType>)[0].quantity}
+              />
+            ))}
           </div>
         </div>
       </section>

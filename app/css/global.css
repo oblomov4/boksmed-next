@@ -1956,7 +1956,8 @@ input {
 
 .grid-table {
   display: grid;
-  grid-template-columns: minmax(20px, 110px) minmax(50px, 179px) auto auto auto auto; /* Автоматические размеры колонок */
+  grid-template-columns: minmax(20px, 110px) minmax(50px, 179px) auto auto auto; /* Автоматические размеры колонок */
+  margin-bottom: 10px;
 }
 
 .reviews-table {
