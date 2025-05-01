@@ -927,6 +927,12 @@ input {
 
 .calc-message {
   color: green;
+  margin-top: 5px;
+}
+
+.final {
+  margin-top: 20px;
+  font-size: 20px;
 }
 
 .loading-calculate {
@@ -958,6 +964,7 @@ input {
   overflow: auto;
   height: 100px;
   border-radius: 10px;
+  z-index: 5000;
 }
 
 .chooce-city-input-component-elem {
@@ -2764,6 +2771,17 @@ input {
 
 .cart-table-loading {
   width: 905px;
+}
+
+.title-pek {
+  text-align: center;
+  color: #3257a4;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.pek-btn {
+  margin-top: 20px;
 }
 
 /* анимации */

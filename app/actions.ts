@@ -2,10 +2,13 @@
 
 import { auth, signIn } from '@/auth';
 import { db } from '@/db';
-import { ordersCall, SelectUserTable, users } from '@/db/schema';
+import { carts, cartsItems, orders, ordersCall, SelectUserTable, users } from '@/db/schema';
+import { createPayment } from '@/shared/lib/creat-payment';
 import { loginSchema, orderCallSchema, registerSchema } from '@/shared/lib/zod';
 import { hashSync } from 'bcrypt';
+import { eq } from 'drizzle-orm';
 import { CredentialsSignin } from 'next-auth';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 type RegisterUserState = {
@@ -212,4 +215,91 @@ export async function registerUser(
   }
 
   return redirect('/register-success');
+}
+
+export async function createOrder(city: string, price: number) {
+  try {
+    const session = await auth();
+
+    if (!session) {
+      throw new Error('not authenticated');
+    }
+
+    const cookieStore = await cookies();
+    const cartToken = cookieStore.get('cartToken')?.value;
+
+    if (!cartToken) {
+      throw new Error('Cart token not found');
+    }
+
+    /* Находим корзину по токену */
+
+    const userCart = await db.query.carts.findFirst({
+      where: (carts, { eq }) => eq(carts.token, cartToken),
+      with: {
+        users: true,
+        cartsItems: {
+          with: {
+            products: true,
+          },
+        },
+      },
+    });
+
+    console.log(userCart);
+
+    /* Если корзина не найдена возращаем ошибку */
+    if (!userCart) {
+      throw new Error('Cart not found');
+    }
+
+    /* Если корзина пустая возращаем ошибку */
+    if (userCart?.totalAmount === 0) {
+      throw new Error('Cart is empty');
+    }
+
+    const [ordersCreated] = await db
+      .insert(orders)
+      .values({
+        token: cartToken,
+        totalAmount: price,
+        address: city,
+        userId: Number(session.user.id),
+        status: 'PENDING',
+        items: JSON.stringify(userCart.cartsItems),
+      })
+      .returning();
+
+    await db.update(carts).set({ totalAmount: 0 }).where(eq(carts.id, userCart.id));
+
+    await db.delete(cartsItems).where(eq(cartsItems.cartId, userCart.id));
+
+    const paymentData = await createPayment({
+      amount: ordersCreated.totalAmount,
+      orderId: ordersCreated.id,
+      description: 'Оплата заказа #' + ordersCreated.id,
+    });
+
+    if (!paymentData) {
+      throw new Error('Payment data not found');
+    }
+
+    // await db
+    //   .update(orders)
+    //   .set({
+    //     paymentId: String(paymentData.id),
+    //   })
+    //   .where(eq(orders.id, Number(paymentData.id)));
+
+    await db
+      .update(orders)
+      .set({ paymentId: paymentData.id })
+      .where(eq(orders.id, ordersCreated.id));
+
+    const paymentUrl = paymentData.confirmation.confirmation_url;
+
+    return paymentUrl;
+  } catch (err) {
+    console.log('[CreateOrder] Server error', err);
+  }
 }

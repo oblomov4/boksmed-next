@@ -2,6 +2,7 @@ import { relations, sql } from 'drizzle-orm';
 import {
   boolean,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   serial,
@@ -116,6 +117,21 @@ export const cartsItems = pgTable('carts_items', {
   productId: integer('product_id').references(() => products.id),
   quantity: integer('quantity').default(1),
 
+  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
+});
+
+export const orderStatusEnum = pgEnum('order_status', ['PENDING', 'PAID', 'CANCELLED']); // Adjust values as needed
+
+export const orders = pgTable('orders', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id').references(() => users.id),
+  token: text('token').notNull(),
+  totalAmount: integer('total_amount').notNull(),
+  status: orderStatusEnum('status').notNull(),
+  paymentId: text('payment_id'),
+  items: jsonb('items').notNull(),
+  address: text('address').notNull(),
   createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
   updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
 });

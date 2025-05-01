@@ -1,6 +1,9 @@
+import { auth } from '@/auth';
 import { BreadCrumps, Cart } from '@/shared/components';
 
-export default function CartPage() {
+export default async function CartPage() {
+  const session = await auth();
+
   return (
     <>
       <BreadCrumps
@@ -17,7 +20,7 @@ export default function CartPage() {
           },
         ]}
       />
-      <Cart />
+      <Cart session={session} />
     </>
   );
 }

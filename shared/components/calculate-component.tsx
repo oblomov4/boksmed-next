@@ -11,11 +11,11 @@ type CalculateParamsType = {
   heightProd: number;
 };
 
-type AllCitiesType = {
+export type AllCitiesType = {
   [key: string]: { [number: string]: string };
 };
 
-type ServerMessageType = {
+export type ServerMessageType = {
   message?: string[];
   err?: string;
   errors?: string[];
@@ -71,12 +71,8 @@ export const CalculateComponent: React.FC = () => {
   }
 
   React.useEffect(() => {
-    console.log('ЗААПУСК EFFECT');
-
     async function getCities() {
       try {
-        console.log('GET CITES');
-
         const res = await fetch('api/get-cities');
         const data = await res.json();
 
@@ -277,6 +273,21 @@ export const CalculateComponent: React.FC = () => {
         ))}
 
       {loading && <LoadingCalculate width={50} />}
+
+      {serverMessage?.message && (
+        <p className="calc-message">
+          {serverMessage.message[0]} - {serverMessage.message[2]}
+        </p>
+      )}
+
+      {serverMessage?.err && <p className="calc-err">{serverMessage.err}</p>}
+
+      {serverMessage?.errors &&
+        serverMessage.errors.map((item, id) => (
+          <p key={id} className="calc-err">
+            {item}
+          </p>
+        ))}
     </div>
   );
 };

@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
           </Link>
 
           <Search />
-          
+
           <Link className="header__top-order-call" href="/call-order">
             Заказать обратный звонок
           </Link>
@@ -72,171 +72,6 @@ export const Header: React.FC = () => {
               </a>
             </li>
           </ul>
-
-          {/* <div className="catalog-menu">
-            <div className="catalog-menu__wrapper">
-              <div className="catalog-menu-links">
-                <p className="catalog-menu-link active">ДЕФИБРИЛЯТОРЫ</p>
-                <p className="catalog-menu-link">РЕАНИМАЦИЯ</p>
-                <p className="catalog-menu-link">КИСЛОРОДНОЕ ОБОРУДОВАНИЕ</p>
-                <p className="catalog-menu-link">СШИВАЮЩИЕ ИНСТРУМЕНТЫ</p>
-                <p className="catalog-menu-link">ИМПЛАНТЫ</p>
-                <p className="catalog-menu-link">МЕДИЦИНСКИЙ ИНСТРУМЕНТ</p>
-              </div>
-
-              <div className="catalog-menu-right">
-                <div className="catalog-menu-submenu show2">
-                  <ul className="catalog-menu-submenu__ul">
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Комплектующие к дефибрилляторам
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Дефибриллятор-монитор
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Ручные
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Автоматические
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="catalog-menu-submenu">
-                  <ul className="catalog-menu-submenu__ul">
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Комплектующие к дефибрилляторам
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Дефибриллятор-монитор
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Ручные
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Автоматические
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="catalog-menu-submenu">
-                  <ul className="catalog-menu-submenu__ul">
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Комплектующие к дефибрилляторам
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Дефибриллятор-монитор
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Ручные
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Автоматические
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="catalog-menu-submenu">
-                  <ul className="catalog-menu-submenu__ul">
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Комплектующие к дефибрилляторам
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Дефибриллятор-монитор
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Ручные
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Автоматические
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="catalog-menu-submenu">
-                  <ul className="catalog-menu-submenu__ul">
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Комплектующие к дефибрилляторам
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Дефибриллятор-монитор
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Ручные
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Автоматические
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="catalog-menu-submenu">
-                  <ul className="catalog-menu-submenu__ul">
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Комплектующие к дефибрилляторам
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Дефибриллятор-монитор
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Ручные
-                      </a>
-                    </li>
-                    <li className="catalog-menu-submenu__li">
-                      <a href="#" className="catalog-menu-submenu__a">
-                        Автоматические
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         <div className="header__bottom">
@@ -282,7 +117,7 @@ export const Header: React.FC = () => {
 
           <ul className="header__bottom-list">
             <li className="header__bottom-item">
-              <a href="#" className="header__bottom-link">
+              <Link href="/cart" className="header__bottom-link">
                 <Image
                   width={ShoppingCart.width}
                   height={ShoppingCart.height}
@@ -291,7 +126,7 @@ export const Header: React.FC = () => {
                   alt="shopping-cart"
                 />
                 Корзина
-              </a>
+              </Link>
             </li>
 
             <li className="header__bottom-item">

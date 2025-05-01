@@ -4,8 +4,14 @@ import React from 'react';
 import { CartTable } from './cart-table';
 import { useCart } from '../hooks/use-cart';
 import clsx from 'clsx';
+import { Session } from 'next-auth';
+import Link from 'next/link';
 
-export const Cart: React.FC = () => {
+interface Props {
+  session: Session | null;
+}
+
+export const Cart: React.FC<Props> = ({ session }) => {
   const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
 
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
@@ -43,9 +49,17 @@ export const Cart: React.FC = () => {
             <h3 className="cart-sum__title">Итоговая стоимость:</h3>
             <p className="cart-sum__summa">{totalAmount} р</p>
 
-            <a className="promo__box-link cart-sum__link" href="">
-              оформить заказ
-            </a>
+            {!session && (
+              <Link className="promo__box-link cart-sum__link" href="/cart/place-order">
+                оформить заказ
+              </Link>
+            )}
+
+            {session && (
+              <Link className="promo__box-link cart-sum__link" href="/cart/create-order">
+                оформить заказ
+              </Link>
+            )}
             <p className="cart-sum__politic">
               Нажимая на кнопку «Оформить заказ», я соглашаюсь с условиями.
             </p>
