@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import { NewsItem } from './news-item';
 
 export const LastNews: React.FC = () => {
   return (
@@ -7,16 +7,16 @@ export const LastNews: React.FC = () => {
       <div className="container">
         <h2 className="title">Последние новости</h2>
         <div className="news__inner">
-          <div className="news__box">
-            <img className="news__box-img" src="images/news1.png" alt="news" />
+          {/* <div className="news__box">
+            <img className="news__box-img" src="/images/news1.png" alt="news" />
             <div className="news__box-header">
               <p className="news__box-date">14.04.2022</p>
               <div className="new__box-header-wrapper">
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gray.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gray.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gray.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gray.svg" alt="" />
               </div>
             </div>
             <h3 className="news__box-title">
@@ -33,15 +33,15 @@ export const LastNews: React.FC = () => {
           </div>
 
           <div className="news__box">
-            <img className="news__box-img" src="images/news2.png" alt="news" />
+            <img className="news__box-img" src="/images/news2.png" alt="news" />
             <div className="news__box-header">
               <p className="news__box-date">17.03.2022</p>
               <div className="new__box-header-wrapper">
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gray.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gray.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gray.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gray.svg" alt="" />
               </div>
             </div>
             <h3 className="news__box-title">
@@ -58,15 +58,15 @@ export const LastNews: React.FC = () => {
           </div>
 
           <div className="news__box">
-            <img className="news__box-img" src="images/news3.png" alt="news" />
+            <img className="news__box-img" src="/images/news3.png" alt="news" />
             <div className="news__box-header">
               <p className="news__box-date">15.05.2020</p>
               <div className="new__box-header-wrapper">
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gold.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gray.svg" alt="" />
-                <img className="news__box-header-img" src="images/star-gray.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gold.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gray.svg" alt="" />
+                <img className="news__box-header-img" src="/images/star-gray.svg" alt="" />
               </div>
             </div>
             <h3 className="news__box-title">
@@ -80,7 +80,10 @@ export const LastNews: React.FC = () => {
                 Автор: <span>Павел С.А</span>
               </p>
             </div>
-          </div>
+          </div> */}
+          <NewsItem />
+          <NewsItem />
+          <NewsItem />
         </div>
       </div>
     </section>
