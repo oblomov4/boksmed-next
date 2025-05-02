@@ -122,6 +122,7 @@ export const cartsItems = pgTable('carts_items', {
 });
 
 export const orderStatusEnum = pgEnum('order_status', ['PENDING', 'PAID', 'CANCELLED']); // Adjust values as needed
+export const orderAdminStatusEnum = pgEnum('order_admin_status', ['В ОБРАБОТКЕ', 'ОБРАБОТАН']); // Adjust values as needed
 
 export const orders = pgTable('orders', {
   id: serial('id').primaryKey(),
@@ -129,6 +130,8 @@ export const orders = pgTable('orders', {
   token: text('token').notNull(),
   totalAmount: integer('total_amount').notNull(),
   status: orderStatusEnum('status').notNull(),
+  adminStatus: orderAdminStatusEnum().notNull().default('В ОБРАБОТКЕ'),
+  trackCode: varchar('track_code'),
   paymentId: text('payment_id'),
   items: jsonb('items').notNull(),
   address: text('address').notNull(),
@@ -163,8 +166,12 @@ export type SelectProducesiltTable = typeof producesilts.$inferSelect;
 export type InsertProductTable = typeof products.$inferInsert;
 export type SelectProductTable = typeof products.$inferSelect;
 
-export const ordersRelations = relations(orders, ({ many }) => ({
+export const ordersRelations = relations(orders, ({ many, one }) => ({
   futureReviews: many(futureReviews),
+  users: one(users, {
+    fields: [orders.userId],
+    references: [users.id],
+  }),
 }));
 
 export const futureReviewsRelations = relations(futureReviews, ({ one }) => ({
@@ -177,6 +184,7 @@ export const futureReviewsRelations = relations(futureReviews, ({ one }) => ({
 export const usersRelations = relations(users, ({ many, one }) => ({
   reviews: many(reviews),
   carts: one(carts),
+  orders: many(orders),
 }));
 
 export const cartsRelations = relations(carts, ({ one, many }) => ({

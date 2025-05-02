@@ -2,12 +2,10 @@
 
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { Chat } from './chat';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 export const ProfileMenu: React.FC = () => {
-  const [showChat, setShowChat] = React.useState<boolean>(false);
-
   return (
     <>
       <div className="profile__right">
@@ -27,12 +25,10 @@ export const ProfileMenu: React.FC = () => {
           </div>
         </div>
 
-        <button id="btn-chat" className="profile__right-btn" onClick={() => setShowChat(true)}>
-          <img src="images/chat-decor.svg" alt="" /> Служба поддержки (связь с продавцом)
+        <button className="profile__right-btn" onClick={() => signOut({ redirectTo: '/' })}>
+          Выйти из аккаунта
         </button>
       </div>
-
-      <Chat showChat={showChat} setShowChat={setShowChat} />
     </>
   );
 };

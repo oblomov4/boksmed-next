@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Buttons: React.FC<Props> = ({ id }) => {
-  const [addCartItem] = useCartStore(useShallow((state) => [state.addCartItem, state.loading]));
+  const [addCartItem] = useCartStore(useShallow((state) => [state.addCartItem]));
 
   async function handleClick() {
     await addCartItem(id);

@@ -62,16 +62,20 @@ export default async function CatalogIdPage({
         <div className="products-catalog-wrapper">
           <div className="container">
             <div className="product-list">
-              {products.map((item) => (
-                <Link key={item.id} href={`/product/${item.id}`}>
-                  <ProductItem
-                    key={item.id}
-                    title={item.title}
-                    price={item.price}
-                    imageUrl={item.imageUrl!}
-                  />
-                </Link>
-              ))}
+              {products.map((item) => {
+                if (item.quantity > 0) {
+                  return (
+                    <Link key={item.id} href={`/product/${item.id}`}>
+                      <ProductItem
+                        key={item.id}
+                        title={item.title}
+                        price={item.price}
+                        imageUrl={item.imageUrl!}
+                      />
+                    </Link>
+                  );
+                }
+              })}
             </div>
           </div>
         </div>

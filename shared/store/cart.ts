@@ -13,8 +13,6 @@ export type ItemsType = {
 };
 
 export interface CartState {
-  loading: boolean;
-  error: boolean;
   totalAmount: number;
   items: Array<ItemsType>;
 
@@ -33,29 +31,21 @@ export interface CartState {
 
 export const useCartStore = create<CartState>((set) => ({
   items: [],
-  error: false,
-  loading: true,
   totalAmount: 0,
 
   fetchCartItems: async () => {
     try {
-      set({ loading: true, error: false });
       const res = await fetch('/api/cart');
 
       const data = await res.json();
       set({ items: data.cartsItems as Array<ItemsType>, totalAmount: data.totalAmount });
     } catch (error) {
       console.error(error);
-      set({ error: true });
-    } finally {
-      set({ loading: false });
     }
   },
 
   updateItemQuantity: async (id: number, quantity: number) => {
     try {
-      set({ loading: true, error: false });
-
       const res = await fetch(`/api/cart/${id}`, {
         method: 'PATCH',
         body: JSON.stringify({ quantity: quantity }),
@@ -66,21 +56,14 @@ export const useCartStore = create<CartState>((set) => ({
       set({ items: data.cartsItems as Array<ItemsType>, totalAmount: data.totalAmount });
     } catch (error) {
       console.error(error);
-      set({ error: true });
-    } finally {
-      set({ loading: false });
     }
   },
 
   removeCartItem: async (id: number) => {
     try {
       set((state) => ({
-        loading: true,
-        error: false,
         items: state.items.map((item) => (item.id === id ? { ...item, disabled: true } : item)),
       }));
-      // const data = await Api.cart.removeCartItem(id);
-      // set(getCartDetails(data));
 
       const res = await fetch(`/api/cart/${id}/`, {
         method: 'DELETE',
@@ -91,18 +74,11 @@ export const useCartStore = create<CartState>((set) => ({
       set({ items: data.cartsItems as Array<ItemsType>, totalAmount: data.totalAmount });
     } catch (error) {
       console.error(error);
-      set({ error: true });
-    } finally {
-      set((state) => ({
-        loading: false,
-        items: state.items.map((item) => ({ ...item, disabled: false })),
-      }));
     }
   },
 
   addCartItem: async (values: any) => {
     try {
-      set({ loading: true, error: false });
       const res = await fetch('/api/cart', {
         method: 'POST',
         body: JSON.stringify({ id: values }),
@@ -112,9 +88,6 @@ export const useCartStore = create<CartState>((set) => ({
       set({ items: data.cartsItems as Array<ItemsType>, totalAmount: data.totalAmount });
     } catch (error) {
       console.error(error);
-      set({ error: true });
-    } finally {
-      set({ loading: false });
     }
   },
 }));

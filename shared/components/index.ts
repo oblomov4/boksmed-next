@@ -45,3 +45,4 @@ export { CartTable } from './cart-table';
 export { Buttons } from './buttons';
 export { Footer } from './footer';
 export { AdminReviewsTable } from './admin-reviews-table';
+export { AdminOrderListTable } from './admin-order-list-table';

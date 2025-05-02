@@ -7,9 +7,17 @@ interface Props {
   title: string;
   totalAmount: number;
   quantity: number;
+  trackCode: string | null;
 }
 
-export const OrderTable: React.FC<Props> = ({ imageUrl, number, title, totalAmount, quantity }) => {
+export const OrderTable: React.FC<Props> = ({
+  imageUrl,
+  number,
+  title,
+  totalAmount,
+  quantity,
+  trackCode,
+}) => {
   return (
     <div className="grid-table">
       <div className="cell cell-title">№</div>
@@ -17,6 +25,7 @@ export const OrderTable: React.FC<Props> = ({ imageUrl, number, title, totalAmou
       <div className="cell cell-title">Название товара</div>
       <div className="cell cell-title">Цена</div>
       <div className="cell cell-title">Количество</div>
+      <div className="cell cell-title">Трек Код</div>
 
       <div className="cell" data-label="№">
         {number}
@@ -32,6 +41,9 @@ export const OrderTable: React.FC<Props> = ({ imageUrl, number, title, totalAmou
       </div>
       <div className="cell" data-label="Количество">
         {quantity}
+      </div>
+      <div className="cell" data-label="Трек код">
+        {trackCode ? trackCode : 'После отправки посылки, трек код появится здесь'}
       </div>
     </div>
   );

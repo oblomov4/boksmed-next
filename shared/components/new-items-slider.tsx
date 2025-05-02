@@ -23,7 +23,23 @@ export const NewItemsSlider: React.FC<Props> = ({ className }) => {
         modules={[Navigation]}
         loop
         spaceBetween={12}
-        onBeforeInit={(swiper) => (swiperNewRef.current = swiper)}>
+        onBeforeInit={(swiper) => (swiperNewRef.current = swiper)}
+        breakpoints={{
+          110: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: 2,
+          },
+          835: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1210: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+        }}>
         <SwiperSlide>
           <div className="new__box">
             <img className="new__box-img" src="images/new1.png" alt="new1" />

@@ -6,7 +6,6 @@ import { ItemsType, useCartStore } from '../store/cart';
 type ReturnProps = {
   totalAmount: number;
   items: ItemsType[];
-  loading: boolean;
   updateItemQuantity: (id: number, quantity: number) => void;
   removeCartItem: (id: number) => void;
   addCartItem: (values: any) => void;

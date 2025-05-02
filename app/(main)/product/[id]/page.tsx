@@ -111,7 +111,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: nu
 
               <div className="collapsible-section">
                 <div className="collapsible-section__header">
-                  <h2 className="collapsible-section__title">Технические характеристики</h2>
+                  <h2 className="collapsible-section__title">
+                    <a href="#characteristic">Технические характеристики</a>
+                  </h2>
                   <img src="/images/arrow-down.svg" alt="" />
                 </div>
               </div>
@@ -125,20 +127,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: nu
                   <img src="/images/arrow-down.svg" alt="" />
                 </div>
               </div>
-
-              <div className="collapsible-section">
-                <div className="collapsible-section__header">
-                  <h2 className="collapsible-section__title">
-                    <a href="#reviews">Видеообзор</a>
-                  </h2>
-                  <img src="/images/arrow-down.svg" alt="" />
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="characteristic">
+      <section className="characteristic" id="characteristic">
         <div className="container">
           <div className="prod__inner">
             <h2 className="prod__title">Технические характеристики</h2>

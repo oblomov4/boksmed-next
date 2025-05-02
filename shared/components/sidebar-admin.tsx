@@ -7,7 +7,7 @@ export const SidebarAdmin: React.FC = () => {
       {/* <button className="sidebar__wrapper-close">
         <img className="sidebar__close" src="images/close.png" alt="" />
       </button> */}
-      <a href="#">Список заказов</a>
+      <Link href="/admin/order-list">Список заказов</Link>
       <Link href="/admin/users">Пользователи</Link>
       <Link href="/admin/product">Товары</Link>
       <Link href="/admin/order-call">Запросы на звонок</Link>

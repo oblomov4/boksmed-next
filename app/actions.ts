@@ -335,3 +335,26 @@ export async function sendReviews(
     return false;
   }
 }
+
+export async function sendTrackCode(id: number, trackCode: string): Promise<boolean> {
+  try {
+    const session = await auth();
+
+    if (!session) {
+      throw new Error('not authenticated');
+    }
+
+    await db
+      .update(orders)
+      .set({
+        trackCode: trackCode,
+        adminStatus: 'ОБРАБОТАН',
+      })
+      .where(eq(orders.id, id));
+
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
