@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const Cart: React.FC<Props> = ({ session }) => {
-  const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
+  const { totalAmount, updateItemQuantity, items, removeCartItem } = useCart();
 
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
@@ -29,7 +29,7 @@ export const Cart: React.FC<Props> = ({ session }) => {
         {items.length > 0 ? (
           <div className="cart__inner">
             <div className="cart-wrapper">
-              <div className={clsx('table-background', loading && 'cart-table-loading')}>
+              <div className={clsx('table-background')}>
                 {items.map((item) => (
                   <CartTable
                     onClickCountButton={onClickCountButton}

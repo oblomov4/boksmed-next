@@ -5,8 +5,6 @@ import { Promo, Equipment, LastNews, NewItems } from '@/shared/components';
 export default async function Home() {
   const catalog: SelectCategoryTable[] | undefined = await db.query.categories.findMany();
 
-  console.log(catalog);
-
   return (
     <>
       <Promo />

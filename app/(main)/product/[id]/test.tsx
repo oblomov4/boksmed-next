@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 <section className="card-reviews">
   <div className="container">
     <div className="prod__inner">

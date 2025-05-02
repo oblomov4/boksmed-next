@@ -25,6 +25,7 @@ export default async function UserOrdersPage({ params }: { params: Promise<{ id:
                 number={index + 1}
                 totalAmount={(item.items as Array<ItemsType>)[0].products.price}
                 quantity={(item.items as Array<ItemsType>)[0].quantity}
+                trackCode={item.trackCode}
               />
             ))}
           </div>
