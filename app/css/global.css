@@ -1964,7 +1964,16 @@ input {
   display: grid;
   grid-template-columns:
     minmax(20px, 110px) minmax(50px, 179px) minmax(50px, 350px) minmax(50px, 153px)
+    auto auto;
+  margin-bottom: 20px;
+}
+
+.admin-reviews-table {
+  display: grid;
+  grid-template-columns:
+    minmax(20px, 110px) minmax(50px, 179px) minmax(50px, 350px) minmax(50px, 153px)
     auto;
+  margin-bottom: 20px;
 }
 
 .cell {
@@ -1973,6 +1982,14 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cell input {
+  resize: none;
+  border-radius: 10px;
+  width: 50px;
+  padding: 10px;
+  box-shadow: inset 0 1px 5px #3257a4;
 }
 
 .cell-title,
@@ -2025,6 +2042,7 @@ input {
   max-width: 250px;
   width: 100%;
   padding: 10px;
+  overflow: auto;
 }
 
 /* cart */

@@ -4,7 +4,7 @@ import { SelectProductTable } from '@/db/schema';
 import { BreadCrumps, OrderTable } from '@/shared/components';
 import { redirect } from 'next/navigation';
 
-type ItemsType = {
+export type ItemsType = {
   id: number;
   cartId: number;
   productId: number;
@@ -50,18 +50,22 @@ export default async function OrdersPage() {
       <section className="orders">
         <div className="container">
           <h2 className="title">Заказы</h2>
-          <div className="table-background">
-            {orders.map((item, index) => (
-              <OrderTable
-                key={item.id}
-                imageUrl={(item.items as Array<ItemsType>)[0].products.imageUrl!}
-                title={(item.items as Array<ItemsType>)[0].products.title}
-                number={index + 1}
-                totalAmount={(item.items as Array<ItemsType>)[0].products.price}
-                quantity={(item.items as Array<ItemsType>)[0].quantity}
-              />
-            ))}
-          </div>
+          {orders.length > 0 ? (
+            <div className="table-background">
+              {orders.map((item, index) => (
+                <OrderTable
+                  key={item.id}
+                  imageUrl={(item.items as Array<ItemsType>)[0].products.imageUrl!}
+                  title={(item.items as Array<ItemsType>)[0].products.title}
+                  number={index + 1}
+                  totalAmount={(item.items as Array<ItemsType>)[0].products.price}
+                  quantity={(item.items as Array<ItemsType>)[0].quantity}
+                />
+              ))}
+            </div>
+          ) : (
+            'У вас нет заказов'
+          )}
         </div>
       </section>
     </>

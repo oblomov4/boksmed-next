@@ -136,6 +136,12 @@ export const orders = pgTable('orders', {
   updatedAt: timestamp('updated_at', { mode: 'string', precision: 3 }).$onUpdate(() => sql`now()`),
 });
 
+export const futureReviews = pgTable('future_reviews', {
+  id: serial('id').primaryKey(),
+  userId: integer('user_id').references(() => users.id),
+  ordersId: integer('orders_id').references(() => orders.id),
+});
+
 export type InsertCartsTable = typeof carts.$inferInsert;
 export type SelectCartsTable = typeof carts.$inferSelect;
 
@@ -156,6 +162,17 @@ export type SelectProducesiltTable = typeof producesilts.$inferSelect;
 
 export type InsertProductTable = typeof products.$inferInsert;
 export type SelectProductTable = typeof products.$inferSelect;
+
+export const ordersRelations = relations(orders, ({ many }) => ({
+  futureReviews: many(futureReviews),
+}));
+
+export const futureReviewsRelations = relations(futureReviews, ({ one }) => ({
+  orders: one(orders, {
+    fields: [futureReviews.ordersId],
+    references: [orders.id],
+  }),
+}));
 
 export const usersRelations = relations(users, ({ many, one }) => ({
   reviews: many(reviews),

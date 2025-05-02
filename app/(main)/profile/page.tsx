@@ -1,9 +1,14 @@
 import { auth } from '@/auth';
 import { BreadCrumps, FormProfile, ProfileMenu } from '@/shared/components';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function ProfilePage() {
   const session = await auth();
+
+  if (!session) {
+    redirect('/login');
+  }
 
   return (
     <>

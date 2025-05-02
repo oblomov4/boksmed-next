@@ -1,5 +1,6 @@
 import { db } from '@/db';
 import { SelectUserTable } from '@/db/schema';
+import Link from 'next/link';
 
 export default async function AdminUserPage({ params }: { params: Promise<{ id: number }> }) {
   const { id } = await params;
@@ -17,12 +18,12 @@ export default async function AdminUserPage({ params }: { params: Promise<{ id: 
       <div className="user-profile__box">{findUser.name}</div>
       <div className="user-profile__box">{findUser.lastName}</div>
       <div className="user-profile__box">
-        <a href="#">Заказы</a>
+        <Link href={`/admin/users/${id}/orders`}>Заказы</Link>
       </div>
       <div className="user-profile__box">{findUser.phone}</div>
       <div className="user-profile__box">{findUser.inn}</div>
       <div className="user-profile__box">
-        <a href="">Оценки</a>
+        <Link href={`/admin/users/${id}/reviews`}>Оценки</Link>
       </div>
       <div className="user-profile__box">{findUser.email}</div>
       <div className="user-profile__box">{findUser.role}</div>

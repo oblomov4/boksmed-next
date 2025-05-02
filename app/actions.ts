@@ -2,7 +2,16 @@
 
 import { auth, signIn } from '@/auth';
 import { db } from '@/db';
-import { carts, cartsItems, orders, ordersCall, SelectUserTable, users } from '@/db/schema';
+import {
+  carts,
+  cartsItems,
+  futureReviews,
+  orders,
+  ordersCall,
+  reviews,
+  SelectUserTable,
+  users,
+} from '@/db/schema';
 import { createPayment } from '@/shared/lib/creat-payment';
 import { loginSchema, orderCallSchema, registerSchema } from '@/shared/lib/zod';
 import { hashSync } from 'bcrypt';
@@ -270,6 +279,10 @@ export async function createOrder(city: string, price: number) {
       })
       .returning();
 
+    await db
+      .insert(futureReviews)
+      .values({ userId: Number(session.user.id), ordersId: ordersCreated.id });
+
     await db.update(carts).set({ totalAmount: 0 }).where(eq(carts.id, userCart.id));
 
     await db.delete(cartsItems).where(eq(cartsItems.cartId, userCart.id));
@@ -283,14 +296,6 @@ export async function createOrder(city: string, price: number) {
     if (!paymentData) {
       throw new Error('Payment data not found');
     }
-
-    // await db
-    //   .update(orders)
-    //   .set({
-    //     paymentId: String(paymentData.id),
-    //   })
-    //   .where(eq(orders.id, Number(paymentData.id)));
-
     await db
       .update(orders)
       .set({ paymentId: paymentData.id })
@@ -301,5 +306,32 @@ export async function createOrder(city: string, price: number) {
     return paymentUrl;
   } catch (err) {
     console.log('[CreateOrder] Server error', err);
+  }
+}
+
+export async function sendReviews(
+  raiting: '1' | '2' | '3' | '4' | '5',
+  text: string,
+  productId: number,
+  futureReviewsId: number,
+): Promise<boolean> {
+  try {
+    const session = await auth();
+    if (!session) {
+      throw new Error('not authenticated');
+    }
+
+    await db.insert(reviews).values({
+      text,
+      productId,
+      raiting,
+      userId: Number(session.user.id),
+    });
+
+    await db.delete(futureReviews).where(eq(futureReviews.id, futureReviewsId));
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
   }
 }
