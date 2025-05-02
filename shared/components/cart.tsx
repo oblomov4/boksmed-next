@@ -29,7 +29,6 @@ export const Cart: React.FC<Props> = ({ session }) => {
         {items.length > 0 ? (
           <div className="cart__inner">
             <div className="cart-wrapper">
-              <button className="cart__top-btn">очистить корзину</button>
               <div className={clsx('table-background', loading && 'cart-table-loading')}>
                 {items.map((item) => (
                   <CartTable

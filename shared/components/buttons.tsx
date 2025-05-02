@@ -4,16 +4,17 @@ import React from 'react';
 import { useCartStore } from '../store/cart';
 import { useShallow } from 'zustand/shallow';
 import { redirect } from 'next/navigation';
-
+import { toast } from 'react-toastify';
 interface Props {
   id: number;
 }
 
 export const Buttons: React.FC<Props> = ({ id }) => {
-  const [addCartItem] = useCartStore(useShallow((state) => [state.addCartItem]));
+  const [addCartItem] = useCartStore(useShallow((state) => [state.addCartItem, state.loading]));
 
   async function handleClick() {
     await addCartItem(id);
+    toast('Товар добавлен в корзину!');
   }
 
   async function handleBuyOneClick() {

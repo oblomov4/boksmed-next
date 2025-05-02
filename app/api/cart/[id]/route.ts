@@ -35,7 +35,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
 export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const id = Number(params.id);
+    const { id } = await params;
     const token = req.cookies.get('cartToken')?.value;
 
     if (!token) {
@@ -43,7 +43,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     }
 
     const cartItem = await db.query.cartsItems.findFirst({
-      where: (cartsItems, { eq }) => eq(cartsItems.id, id),
+      where: (cartsItems, { eq }) => eq(cartsItems.id, Number(id)),
     });
 
     if (!cartItem) {
@@ -56,7 +56,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     //   },
     // });
 
-    await db.delete(cartsItems).where(eq(cartsItems.id, id));
+    await db.delete(cartsItems).where(eq(cartsItems.id, Number(id)));
 
     const updatedUserCart = await updateCartTotalAmount(token);
 

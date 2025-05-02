@@ -1,6 +1,8 @@
+import NextTopLoader from 'nextjs-toploader';
 import type { Metadata } from 'next';
 import '@/app/css/global.css';
 import { geometria } from '@/shared/fonts';
+import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={geometria.className}>{children}</body>
+      <body className={geometria.className}>
+        <ToastContainer autoClose={1000} />
+        <NextTopLoader />
+        {children}
+      </body>
     </html>
   );
 }
