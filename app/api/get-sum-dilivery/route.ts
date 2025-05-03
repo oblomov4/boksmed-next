@@ -22,8 +22,6 @@ export async function POST(request: NextRequest) {
 
     const data = await res.json();
 
-    console.log(data);
-
     if (data.error_auto) {
       const errors = data.error;
       return NextResponse.json({

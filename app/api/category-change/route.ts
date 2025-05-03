@@ -9,7 +9,7 @@ type UpdatedCategoryType = {
   imageUrl?: string;
 };
 
-export const POST = auth(async (req) => {
+export const PATCH = auth(async (req) => {
   try {
     const admin = req.auth;
     if (!admin) {

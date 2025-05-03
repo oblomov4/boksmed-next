@@ -18,8 +18,8 @@ export const ProducesiltAdminItem: React.FC<Props> = ({ title, id }) => {
   async function handleClickDelete() {
     try {
       const res = await fetch('/api/producesilt-remove', {
-        method: 'POST',
-        body: JSON.stringify({id}),
+        method: 'DELETE',
+        body: JSON.stringify({ id }),
       });
 
       const data = await res.json();

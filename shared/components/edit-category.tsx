@@ -79,7 +79,7 @@ export const EditCategory: React.FC<Props> = ({ show, setShow, title, imageUrl, 
 
     try {
       const res = await fetch('/api/category-change/', {
-        method: 'POST',
+        method: 'PATCH',
         body: JSON.stringify({
           id,
           title: input,

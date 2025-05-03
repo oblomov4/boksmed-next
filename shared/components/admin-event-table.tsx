@@ -22,7 +22,7 @@ export const AdminEventTable: React.FC<Props> = ({ imageUrl, title, description,
 
     try {
       await fetch('/api/event-visible', {
-        method: 'POST',
+        method: 'PATCH',
         body: JSON.stringify({ id }),
       });
     } catch (err) {
@@ -33,7 +33,7 @@ export const AdminEventTable: React.FC<Props> = ({ imageUrl, title, description,
   async function handleClickDelete() {
     try {
       const res = await fetch('/api/event-delete', {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({ id }),
       });
 

@@ -4,7 +4,7 @@ import { events } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 
-export const POST = auth(async (req) => {
+export const DELETE = auth(async (req) => {
   try {
     const admin = req.auth;
     if (!admin) {

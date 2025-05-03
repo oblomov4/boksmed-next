@@ -19,7 +19,7 @@ export const CategoryItem: React.FC<Props> = ({ id, imageUrl, title }) => {
   async function handleClickDelete() {
     try {
       const res = await fetch('/api/category-delete', {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({ id }),
       });
 
