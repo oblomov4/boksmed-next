@@ -1,10 +1,18 @@
+import { auth } from '@/auth';
 import { db } from '@/db';
 import { producesilts } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest) {
+export const POST = auth(async (req) => {
   try {
+    const admin = req.auth;
+    if (!admin) {
+      throw new Error('not authenticated');
+    }
+    if (admin.user.role === 'USER') {
+      throw new Error('not authenticated');
+    }
     const res = await req.json();
 
     if (!res.id) {
@@ -20,4 +28,4 @@ export async function POST(req: NextRequest) {
     console.log(err);
     return NextResponse.json({ success: false });
   }
-}
+});

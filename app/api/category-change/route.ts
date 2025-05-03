@@ -1,15 +1,23 @@
+import { auth } from '@/auth';
 import { db } from '@/db';
 import { categories, SelectCategoryTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 type UpdatedCategoryType = {
   title?: string;
   imageUrl?: string;
 };
 
-export async function POST(req: NextRequest) {
+export const POST = auth(async (req) => {
   try {
+    const admin = req.auth;
+    if (!admin) {
+      throw new Error('not authenticated');
+    }
+    if (admin.user.role === 'USER') {
+      throw new Error('not authenticated');
+    }
     const res = await req.json();
 
     const category: SelectCategoryTable | undefined = await db.query.categories.findFirst({
@@ -41,4 +49,4 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ error: 'Что-то пошло не так!' });
   }
-}
+});

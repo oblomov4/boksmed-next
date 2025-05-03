@@ -30,7 +30,7 @@ export const AdminProductItem: React.FC<Props> = ({
     setIsVisible(!isVisible);
     try {
       const res = await fetch('/api/product-visible', {
-        method: 'POST',
+        method: 'PATCH',
         body: JSON.stringify({ visible: !isVisible, id: id }),
       });
 
@@ -45,7 +45,7 @@ export const AdminProductItem: React.FC<Props> = ({
   async function deleteProduct() {
     try {
       const res = await fetch('/api/product-delete', {
-        method: 'POST',
+        method: 'DELETE',
         body: JSON.stringify({ id }),
       });
 
@@ -62,7 +62,7 @@ export const AdminProductItem: React.FC<Props> = ({
   async function saveNewQuantity() {
     try {
       await fetch('/api/product-new-quantity', {
-        method: 'POST',
+        method: 'PATCH',
         body: JSON.stringify({ id: id, quantity: newQuantity }),
       });
     } catch (err) {

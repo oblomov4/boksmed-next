@@ -50,12 +50,6 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
       return NextResponse.json({ error: 'Cart item not found' });
     }
 
-    // await prisma.cartItem.delete({
-    //   where: {
-    //     id: Number(params.id),
-    //   },
-    // });
-
     await db.delete(cartsItems).where(eq(cartsItems.id, Number(id)));
 
     const updatedUserCart = await updateCartTotalAmount(token);

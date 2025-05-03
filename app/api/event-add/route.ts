@@ -1,9 +1,17 @@
+import { auth } from '@/auth';
 import { db } from '@/db';
-import { events} from '@/db/schema';
-import { NextResponse, type NextRequest } from 'next/server';
+import { events } from '@/db/schema';
+import { NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest) {
+export const POST = auth(async (req) => {
   try {
+    const admin = req.auth;
+    if (!admin) {
+      throw new Error('not authenticated');
+    }
+    if (admin.user.role === 'USER') {
+      throw new Error('not authenticated');
+    }
     const res = await req.json();
 
     const imageUrl = '/assets/' + res.imageUrl;
@@ -26,4 +34,4 @@ export async function POST(req: NextRequest) {
     console.log(err);
     return NextResponse.json({ err: 'Что-то пошло не так' }, { status: 500 });
   }
-}
+});
