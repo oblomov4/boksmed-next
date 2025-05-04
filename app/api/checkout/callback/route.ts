@@ -38,14 +38,20 @@ export async function POST(req: NextRequest) {
         }
 
         if (findProduct.quantity > 1) {
-          await db.update(products).set({
-            quantity: findProduct.quantity - 1,
-          });
+          await db
+            .update(products)
+            .set({
+              quantity: findProduct.quantity - 1,
+            })
+            .where(eq(products.id, productId));
         } else {
-          await db.update(products).set({
-            quantity: 0,
-            visible: false,
-          });
+          await db
+            .update(products)
+            .set({
+              quantity: 0,
+              visible: false,
+            })
+            .where(eq(products.id, productId));
         }
       }
 
