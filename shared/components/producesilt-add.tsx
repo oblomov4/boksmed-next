@@ -150,7 +150,7 @@ export const ProducesiltAdd: React.FC<Props> = ({ show, setShow }) => {
           {serverUploadFile?.message === 'Success' && serverUploadFile.fileName && (
             <div className="preview">
               <Image
-                src={`/assets/${serverUploadFile.fileName}`}
+                src={serverUploadFile.fileName}
                 width={70}
                 height={52}
                 alt={serverUploadFile.fileName}

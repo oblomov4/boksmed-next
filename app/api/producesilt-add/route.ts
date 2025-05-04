@@ -17,7 +17,7 @@ export const POST = auth(async (req) => {
     await db.insert(producesilts).values({
       title: res.title,
       description: res.description,
-      imageUrl: res.imageUrl ? `/assets/${res.imageUrl}` : '',
+      imageUrl: res.imageUrl ? res.imageUrl : '',
     });
 
     return NextResponse.json({ message: 'Производитель успешно добавлен!' });

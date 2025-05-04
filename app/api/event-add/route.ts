@@ -14,7 +14,7 @@ export const POST = auth(async (req) => {
     }
     const res = await req.json();
 
-    const imageUrl = '/assets/' + res.imageUrl;
+    const imageUrl = res.imageUrl;
 
     await db.insert(events).values({
       title: res.title,

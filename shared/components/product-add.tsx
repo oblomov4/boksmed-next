@@ -21,7 +21,6 @@ type InputsType = {
   specifications: string;
 };
 
-
 export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -73,7 +72,6 @@ export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt, set
     }
   }
 
-
   async function handleClickSave() {
     if (
       inputs.title === '' ||
@@ -92,7 +90,7 @@ export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt, set
         description: inputs.description,
         price: Number(inputs.price),
         specifications: inputs.specifications,
-        imageUrl: `/assets/${serverUploadFile.fileName}`,
+        imageUrl: serverUploadFile.fileName,
         quantity: Number(inputs.quantity),
         producesiltId: Number(selectProducesilt),
         categoryId: Number(cats),
@@ -208,7 +206,7 @@ export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt, set
           {serverUploadFile?.message === 'Success' && serverUploadFile.fileName && (
             <div className="preview">
               <Image
-                src={`/assets/${serverUploadFile.fileName}`}
+                src={serverUploadFile.fileName}
                 width={70}
                 height={52}
                 alt={serverUploadFile.fileName}

@@ -53,9 +53,6 @@ export const EventAdd: React.FC<Props> = ({ show, setShow }) => {
         const data: ServerUploadFileType = await res.json();
         setServerUploadFile(data);
         setFileUploadTextWarning('');
-
-        console.log('---------------------------');
-        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -172,7 +169,7 @@ export const EventAdd: React.FC<Props> = ({ show, setShow }) => {
           {serverUploadFile?.message === 'Success' && serverUploadFile.fileName && (
             <div className="preview">
               <Image
-                src={`/assets/${serverUploadFile.fileName}`}
+                src={serverUploadFile.fileName}
                 width={70}
                 height={52}
                 alt={serverUploadFile.fileName}

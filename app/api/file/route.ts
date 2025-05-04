@@ -1,7 +1,6 @@
 import { auth } from '@/auth';
-import { writeFile } from 'fs/promises';
 import { NextResponse } from 'next/server';
-import path from 'path';
+import { put } from '@vercel/blob';
 
 export const POST = auth(async (req) => {
   try {
@@ -20,13 +19,12 @@ export const POST = auth(async (req) => {
       throw new Error();
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const blob = await put(file.name, file, {
+      access: 'public',
+      allowOverwrite: true,
+    });
 
-    const filename = file.name.replaceAll(' ', '_');
-
-    await writeFile(path.join(process.cwd(), 'public/assets/' + filename), buffer);
-
-    return NextResponse.json({ message: 'Success', fileName: filename, status: 201 });
+    return NextResponse.json({ message: 'Success', fileName: blob.url, status: 201 });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ message: 'Failed', status: 500 });

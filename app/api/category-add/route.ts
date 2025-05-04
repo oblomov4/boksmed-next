@@ -12,12 +12,12 @@ export const POST = auth(async (req) => {
     if (admin.user.role === 'USER') {
       throw new Error('not authenticated');
     }
-    
+
     const res = await req.json();
 
     await db.insert(categories).values({
       title: res.title,
-      imageUrl: res.imageUrl != '' ? `/assets/${res.imageUrl}` : '',
+      imageUrl: res.imageUrl ? res.imageUrl : '',
     });
 
     return NextResponse.json({ message: 'Категория добавлена' });

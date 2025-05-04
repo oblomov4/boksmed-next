@@ -10,7 +10,6 @@ interface Props {
   setShow: (value: boolean) => void;
 }
 
-
 export const CategoryAdd: React.FC<Props> = ({ show, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [title, setTitle] = React.useState<string>('');
@@ -49,7 +48,6 @@ export const CategoryAdd: React.FC<Props> = ({ show, setShow }) => {
   function handleClick() {
     inputRef.current?.click();
   }
-
 
   async function handleClickSave() {
     if (title.length === 0) return;
@@ -129,7 +127,7 @@ export const CategoryAdd: React.FC<Props> = ({ show, setShow }) => {
           {serverUploadFile?.message === 'Success' && serverUploadFile.fileName && (
             <div className="preview">
               <Image
-                src={`/assets/${serverUploadFile.fileName}`}
+                src={serverUploadFile.fileName}
                 width={70}
                 height={52}
                 alt={serverUploadFile.fileName}
