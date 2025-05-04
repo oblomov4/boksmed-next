@@ -23,8 +23,7 @@ export const POST = auth(async (req) => {
       imageUrl,
     });
 
-
-    revalidatePath('/')
+    revalidatePath('/about');
 
     return NextResponse.json(
       {
