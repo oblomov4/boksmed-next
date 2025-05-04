@@ -14,6 +14,7 @@ interface Props {
   number: string;
   adminStatus: string;
   defaultTrackCode: string | null;
+  status: 'PENDING' | 'PAID' | 'CANCELLED';
 }
 
 export const AdminOrderListTable: React.FC<Props> = ({
@@ -25,6 +26,7 @@ export const AdminOrderListTable: React.FC<Props> = ({
   number,
   adminStatus,
   defaultTrackCode,
+  status,
 }) => {
   const newDate = date.split(' ')[0];
   const [trackCode, setTrackCode] = React.useState<string>('');
@@ -70,7 +72,7 @@ export const AdminOrderListTable: React.FC<Props> = ({
         {newDate}
       </div>
       <div className="cell" data-label="оплата">
-        Оплачен
+        {status}
       </div>
       <div className="cell" data-label="статус">
         {!isOk ? adminStatus : 'ОБРАБОТАН'}

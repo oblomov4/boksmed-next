@@ -23,6 +23,7 @@ export default async function OrderListPageAdmin() {
               adress={item.address}
               number={item.users?.phone as string}
               adminStatus={item.adminStatus}
+              status={item.status}
               defaultTrackCode={item.trackCode}
             />
           ))
