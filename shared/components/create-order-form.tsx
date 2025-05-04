@@ -30,7 +30,7 @@ export const CreateOrderForm: React.FC = () => {
           arr1.push(keyOne);
 
           for (const keyTwo in data[keyOne]) {
-            arr2.push(data.data[keyOne][keyTwo]);
+            arr2.push(data[keyOne][keyTwo]);
           }
         }
 
