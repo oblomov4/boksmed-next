@@ -17,7 +17,6 @@ type EventTextType = {
   description: string;
 };
 
-
 export const EventAdd: React.FC<Props> = ({ show, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [fileUploadTextWarning, setFileUploadTextWarning] = React.useState<string>('');
@@ -54,6 +53,9 @@ export const EventAdd: React.FC<Props> = ({ show, setShow }) => {
         const data: ServerUploadFileType = await res.json();
         setServerUploadFile(data);
         setFileUploadTextWarning('');
+
+        console.log('---------------------------');
+        console.log(data);
       } catch (err) {
         console.log(err);
       }

@@ -66,7 +66,7 @@ export const RegisterForm: React.FC = () => {
           </div>
         </div>
 
-        <button className="promo__box-link">отправить</button>
+        <button className="promo__box-link">Зарегистрироваться</button>
         <p className="promo__box-politic">
           Нажимая на кнопку «Отправить», я соглашаюсь с условиями.
         </p>

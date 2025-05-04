@@ -50,7 +50,7 @@ export const LoginForm: React.FC = () => {
           </p>
         ))}
 
-      <button className="promo__box-link">отправить</button>
+      <button className="promo__box-link">Войти в аккаунт</button>
       <Link className="anonym-link" href="/register">
         Регистрация
       </Link>
