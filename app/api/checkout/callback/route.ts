@@ -47,6 +47,8 @@ export async function POST(req: NextRequest) {
         });
       }
     }
+
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.log('[Checkout Callback] Error:', error);
     return NextResponse.json({ error: 'Server error' });
