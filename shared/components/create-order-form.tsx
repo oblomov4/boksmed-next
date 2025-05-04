@@ -26,10 +26,10 @@ export const CreateOrderForm: React.FC = () => {
         const arr1 = [];
         const arr2 = [];
 
-        for (const keyOne in data.data) {
+        for (const keyOne in data) {
           arr1.push(keyOne);
 
-          for (const keyTwo in data.data[keyOne]) {
+          for (const keyTwo in data[keyOne]) {
             arr2.push(data.data[keyOne][keyTwo]);
           }
         }
@@ -37,7 +37,7 @@ export const CreateOrderForm: React.FC = () => {
         const cities = arr1.concat(arr2);
 
         setCities(cities);
-        setAllCities(data.data);
+        setAllCities(data);
       } catch (err) {
         console.log(err);
       }

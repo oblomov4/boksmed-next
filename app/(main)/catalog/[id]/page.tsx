@@ -18,17 +18,20 @@ export default async function CatalogIdPage({
 
   if (sort === 'asc') {
     products = await db.query.products.findMany({
-      where: (products, { eq }) => eq(products.categoryId, id),
+      where: (products, { eq, and }) =>
+        and(eq(products.categoryId, id), eq(products.visible, true)),
       orderBy: (products, { asc }) => [asc(products.price)],
     });
   } else if (sort === 'desc') {
     products = await db.query.products.findMany({
-      where: (products, { eq }) => eq(products.categoryId, id),
+      where: (products, { eq, and }) =>
+        and(eq(products.categoryId, id), eq(products.visible, true)),
       orderBy: (products, { desc }) => [desc(products.price)],
     });
   } else {
     products = await db.query.products.findMany({
-      where: (products, { eq }) => eq(products.categoryId, id),
+      where: (products, { eq, and }) =>
+        and(eq(products.categoryId, id), eq(products.visible, true)),
     });
   }
 
