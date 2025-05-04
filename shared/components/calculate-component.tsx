@@ -39,6 +39,8 @@ export const CalculateComponent: React.FC = () => {
   async function handleClick() {
     let citiesId: string | null = null;
 
+    console.log(allCities);
+
     for (const keyOne in allCities) {
       for (const keyTwo in allCities[keyOne]) {
         if (allCities[keyOne][keyTwo] === input) {
@@ -73,24 +75,28 @@ export const CalculateComponent: React.FC = () => {
   React.useEffect(() => {
     async function getCities() {
       try {
-        const res = await fetch('api/get-cities');
+        console.log('FETCH GET CITIES');
+
+        const res = await fetch('api/get-cities/');
         const data = await res.json();
+
+        console.log(data, 'data');
 
         const arr1 = [];
         const arr2 = [];
 
-        for (const keyOne in data.data) {
+        for (const keyOne in data) {
           arr1.push(keyOne);
 
-          for (const keyTwo in data.data[keyOne]) {
-            arr2.push(data.data[keyOne][keyTwo]);
+          for (const keyTwo in data[keyOne]) {
+            arr2.push(data[keyOne][keyTwo]);
           }
         }
 
         const cities = arr1.concat(arr2);
 
         setCities(cities);
-        setAllCities(data.data);
+        setAllCities(data);
       } catch (err) {
         console.log(err);
       }
@@ -273,11 +279,7 @@ export const CalculateComponent: React.FC = () => {
 
       {loading && <LoadingCalculate width={50} />}
 
-      {serverMessage?.message && (
-        <p className="calc-message">
-          {serverMessage.message[0]} - {serverMessage.message[2]}
-        </p>
-      )}
+  
 
       {serverMessage?.err && <p className="calc-err">{serverMessage.err}</p>}
 

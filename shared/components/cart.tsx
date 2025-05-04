@@ -26,7 +26,7 @@ export const Cart: React.FC<Props> = ({ session }) => {
           <h3 className="title cart__title">Моя корзина</h3>
         </div>
 
-        {items.length > 0 ? (
+        {items && items.length > 0 ? (
           <div className="cart__inner">
             <div className="cart-wrapper">
               <div className={clsx('table-background')}>
