@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import { db } from '@/db';
 import { events, SelectEventsTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const PATCH = auth(async (req) => {
@@ -24,6 +25,7 @@ export const PATCH = auth(async (req) => {
     }
 
     await db.update(events).set({ visible: !event.visible }).where(eq(events.id, res.id));
+    revalidatePath('/about');
 
     return NextResponse.json({ message: 'success' });
   } catch {
