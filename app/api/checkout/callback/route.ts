@@ -26,25 +26,27 @@ export async function POST(req: NextRequest) {
       })
       .where(eq(orders.id, order.id));
 
-    for (let i = 0; i < (order.items as Array<ItemsType>).length; i++) {
-      const productId = (order.items as Array<ItemsType>)[i].productId;
-      const findProduct = await db.query.products.findFirst({
-        where: (products, { eq }) => eq(products.id, productId),
-      });
-
-      if (!findProduct) {
-        throw new Error();
-      }
-
-      if (findProduct.quantity > 1) {
-        await db.update(products).set({
-          quantity: findProduct.quantity - 1,
+    if (isSucceeded) {
+      for (let i = 0; i < (order.items as Array<ItemsType>).length; i++) {
+        const productId = (order.items as Array<ItemsType>)[i].productId;
+        const findProduct = await db.query.products.findFirst({
+          where: (products, { eq }) => eq(products.id, productId),
         });
-      } else {
-        await db.update(products).set({
-          quantity: 0,
-          visible: false,
-        });
+
+        if (!findProduct) {
+          throw new Error();
+        }
+
+        if (findProduct.quantity > 1) {
+          await db.update(products).set({
+            quantity: findProduct.quantity - 1,
+          });
+        } else {
+          await db.update(products).set({
+            quantity: 0,
+            visible: false,
+          });
+        }
       }
     }
 
