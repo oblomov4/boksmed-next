@@ -28,9 +28,9 @@ export const LoginForm: React.FC = () => {
             required
           />
 
-          <a className="anonym__content-pass" href="#">
+          <Link className="anonym__content-pass" href="/forgot-password">
             Забыли пароль?
-          </a>
+          </Link>
         </div>
       </div>
 

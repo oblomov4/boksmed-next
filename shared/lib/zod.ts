@@ -39,3 +39,13 @@ export const orderCallSchema = z.object({
   phone: z.string().min(10, 'Телефон обязательное поле'),
   message: z.string().min(5, 'Сообщение обязательное поле'),
 });
+
+export const resetPasswordSchema = z
+  .object({
+    password: passwordSchema,
+    confirmPassword: passwordSchema,
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Пароли не совпадают',
+    path: ['confirmPassword'],
+  });

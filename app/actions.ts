@@ -5,14 +5,17 @@ import { db } from '@/db';
 import {
   carts,
   cartsItems,
+  forgotPasswordCode,
   futureReviews,
   orders,
   ordersCall,
   reviews,
+  SelectForgotPasswordCode,
   SelectUserTable,
   users,
 } from '@/db/schema';
 import { createPayment } from '@/shared/lib/creat-payment';
+import { passwordRecovery } from '@/shared/lib/mail-send';
 import { loginSchema, orderCallSchema, registerSchema } from '@/shared/lib/zod';
 import { hashSync } from 'bcrypt';
 import { eq } from 'drizzle-orm';
@@ -54,6 +57,49 @@ type OrderCallType = {
   };
   errMessage?: string;
 };
+
+type resetPasswordType = {
+  error?: string;
+};
+
+export async function resetPassword(
+  prevState: resetPasswordType,
+  formData: FormData,
+): Promise<resetPasswordType> {
+  try {
+    const email = formData.get('email');
+
+    if (!email) {
+      return { error: 'Что-то пошло не так!' };
+    }
+
+    const findUser = await db.query.users.findFirst({
+      where: (users, { eq }) => eq(users.email, email as string),
+    });
+
+    if (!findUser) {
+      return { error: 'Нет пользователя с таким E-mail' };
+    }
+
+    const findCode: SelectForgotPasswordCode | undefined =
+      await db.query.forgotPasswordCode.findFirst({
+        where: (forgotPasswordCode, { eq }) => eq(forgotPasswordCode.userId, findUser.id),
+      });
+
+    if (!findCode) {
+      const code = Math.floor(100000 + Math.random() * 900000).toString();
+      await db.insert(forgotPasswordCode).values({ userId: findUser.id, code });
+      await passwordRecovery(findUser.email, code);
+    } else {
+      await passwordRecovery(findUser.email, findCode.code);
+    }
+  } catch (err) {
+    console.log(err);
+    return { error: 'Что-то пошло не та!' };
+  }
+
+  redirect('/reset-password-info');
+}
 
 export async function orderCall(
   prevState: OrderCallType,
@@ -246,7 +292,6 @@ export async function createOrder(city: string, price: number) {
         },
       },
     });
-
 
     /* Если корзина не найдена возращаем ошибку */
     if (!userCart) {

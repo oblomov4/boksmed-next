@@ -145,6 +145,22 @@ export const futureReviews = pgTable('future_reviews', {
   ordersId: integer('orders_id').references(() => orders.id),
 });
 
+export const forgotPasswordCode = pgTable('forgot_password_code', {
+  id: serial().primaryKey(),
+
+  userId: integer('user_id')
+    .references(() => users.id, { onDelete: 'cascade' })
+    .notNull()
+    .unique(),
+
+  code: varchar().unique().notNull(),
+
+  createdAt: timestamp('created_at', { mode: 'string', precision: 3 }).defaultNow(),
+});
+
+export type SelectForgotPasswordCode = typeof forgotPasswordCode.$inferSelect;
+export type InsertForgotPasswordCode = typeof forgotPasswordCode.$inferSelect;
+
 export type InsertCartsTable = typeof carts.$inferInsert;
 export type SelectCartsTable = typeof carts.$inferSelect;
 
