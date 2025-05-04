@@ -38,6 +38,10 @@ input {
   border: none;
 }
 
+.mb-100 {
+  margin-bottom: 100px;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;

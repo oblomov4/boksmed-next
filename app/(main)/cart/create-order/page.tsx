@@ -7,9 +7,11 @@ export default function CreateOrderPage() {
   return (
     <div className="create-order">
       <div className="container">
-        <FormWrapper border title="Оформление заказа">
-          <CreateOrderForm />
-        </FormWrapper>
+        <div className="mb-100">
+          <FormWrapper border title="Оформление заказа">
+            <CreateOrderForm />
+          </FormWrapper>
+        </div>
       </div>
     </div>
   );
