@@ -39,8 +39,6 @@ export const CreateOrderForm: React.FC = () => {
         setCities(cities);
         setAllCities(data.data);
       } catch (err) {
-        console.log('СЛОВИЛ ОШИБКУ');
-
         console.log(err);
       }
     }
