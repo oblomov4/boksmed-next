@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { redirect } from 'next/navigation';
+import { validFileType } from '../lib/valid-file-type';
+import { AddedServerResponseType, ServerUploadFileType } from '../lib/definitions';
 
 interface Props {
   className?: string;
@@ -14,16 +16,6 @@ type InputsType = {
   description: string;
 };
 
-type ServerUploadFileType = {
-  message: 'Success' | 'Failed';
-  fileName?: string;
-};
-
-type ProducesiltAddType = {
-  message?: string;
-  err?: string;
-};
-
 export const ProducesiltAdd: React.FC<Props> = ({ show, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [inputs, setInputs] = React.useState<InputsType>({
@@ -33,7 +25,7 @@ export const ProducesiltAdd: React.FC<Props> = ({ show, setShow }) => {
   const [fileUploadTextWarning, setFileUploadTextWarning] = React.useState<string>('');
   const [serverUploadFile, setServerUploadFile] = React.useState<ServerUploadFileType | null>(null);
 
-  const [producesiltAdd, setProducesiltAdd] = React.useState<ProducesiltAddType>({});
+  const [producesiltAdd, setProducesiltAdd] = React.useState<AddedServerResponseType>({});
 
   function handleClick() {
     inputRef.current?.click();
@@ -89,16 +81,6 @@ export const ProducesiltAdd: React.FC<Props> = ({ show, setShow }) => {
     } else {
       setFileUploadTextWarning('Файл должен быть с расширением .png или .jpeg');
     }
-  }
-
-  function validFileType(file: File) {
-    const fileTypes = ['image/jpeg', 'image/pjpeg', 'image/png'];
-    for (let i = 0; i < fileTypes.length; i++) {
-      if (file.type === fileTypes[i]) {
-        return true;
-      }
-    }
-    return false;
   }
 
   function handleClickExit() {

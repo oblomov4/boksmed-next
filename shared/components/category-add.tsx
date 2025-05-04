@@ -2,21 +2,14 @@ import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { redirect } from 'next/navigation';
+import { validFileType } from '../lib/valid-file-type';
+import { AddedServerResponseType, ServerUploadFileType } from '../lib/definitions';
 
 interface Props {
   show: boolean;
   setShow: (value: boolean) => void;
 }
 
-type ServerUploadFileType = {
-  message: 'Success' | 'Failed';
-  fileName?: string;
-};
-
-type CategoryAddType = {
-  message?: string;
-  err?: string;
-};
 
 export const CategoryAdd: React.FC<Props> = ({ show, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -24,7 +17,7 @@ export const CategoryAdd: React.FC<Props> = ({ show, setShow }) => {
   const [fileUploadTextWarning, setFileUploadTextWarning] = React.useState<string>('');
   const [serverUploadFile, setServerUploadFile] = React.useState<ServerUploadFileType | null>(null);
 
-  const [categoryAdd, setCategoryAdd] = React.useState<CategoryAddType>({});
+  const [categoryAdd, setCategoryAdd] = React.useState<AddedServerResponseType>({});
 
   async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
     if (!event.target.files || event.target.files.length === 0) {
@@ -57,15 +50,6 @@ export const CategoryAdd: React.FC<Props> = ({ show, setShow }) => {
     inputRef.current?.click();
   }
 
-  function validFileType(file: File) {
-    const fileTypes = ['image/jpeg', 'image/pjpeg', 'image/png'];
-    for (let i = 0; i < fileTypes.length; i++) {
-      if (file.type === fileTypes[i]) {
-        return true;
-      }
-    }
-    return false;
-  }
 
   async function handleClickSave() {
     if (title.length === 0) return;

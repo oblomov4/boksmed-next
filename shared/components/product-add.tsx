@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import React from 'react';
+import { validFileType } from '../lib/valid-file-type';
+import { ServerUploadFileType } from '../lib/definitions';
 
 interface Props {
   show: boolean;
@@ -19,10 +21,6 @@ type InputsType = {
   specifications: string;
 };
 
-type ServerUploadFileType = {
-  message: 'Success' | 'Failed';
-  fileName?: string;
-};
 
 export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -75,15 +73,6 @@ export const ProductAdd: React.FC<Props> = ({ show, categories, producesilt, set
     }
   }
 
-  function validFileType(file: File) {
-    const fileTypes = ['image/jpeg', 'image/pjpeg', 'image/png'];
-    for (let i = 0; i < fileTypes.length; i++) {
-      if (file.type === fileTypes[i]) {
-        return true;
-      }
-    }
-    return false;
-  }
 
   async function handleClickSave() {
     if (

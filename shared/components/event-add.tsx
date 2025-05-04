@@ -4,25 +4,19 @@ import clsx from 'clsx';
 import React from 'react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import { validFileType } from '../lib/valid-file-type';
+import { AddedServerResponseType, ServerUploadFileType } from '../lib/definitions';
+
 interface Props {
   show: boolean;
   setShow: (value: boolean) => void;
 }
-
-type ServerUploadFileType = {
-  message: 'Success' | 'Failed';
-  fileName?: string;
-};
 
 type EventTextType = {
   title: string;
   description: string;
 };
 
-type EventAddServerResponseType = {
-  message?: string;
-  err?: string;
-};
 
 export const EventAdd: React.FC<Props> = ({ show, setShow }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -34,21 +28,11 @@ export const EventAdd: React.FC<Props> = ({ show, setShow }) => {
   });
 
   const [eventAddServerResponse, setEventAddServerResponse] =
-    React.useState<EventAddServerResponseType>({});
+    React.useState<AddedServerResponseType>({});
 
   function handleClick() {
     setEventAddServerResponse({});
     inputRef.current?.click();
-  }
-
-  function validFileType(file: File) {
-    const fileTypes = ['image/jpeg', 'image/pjpeg', 'image/png'];
-    for (let i = 0; i < fileTypes.length; i++) {
-      if (file.type === fileTypes[i]) {
-        return true;
-      }
-    }
-    return false;
   }
 
   async function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
