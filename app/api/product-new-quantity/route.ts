@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import { db } from '@/db';
 import { products } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const PATCH = auth(async (req) => {
@@ -22,6 +23,7 @@ export const PATCH = auth(async (req) => {
       })
       .where(eq(products.id, res.id));
 
+    revalidatePath('/product[id]/page');
     return NextResponse.json({ success: true });
   } catch (err) {
     console.log(err);

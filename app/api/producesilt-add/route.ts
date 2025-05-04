@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import { db } from '@/db';
 import { producesilts } from '@/db/schema';
+import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const POST = auth(async (req) => {
@@ -19,6 +20,8 @@ export const POST = auth(async (req) => {
       description: res.description,
       imageUrl: res.imageUrl ? res.imageUrl : '',
     });
+
+    revalidatePath('/producesilt');
 
     return NextResponse.json({ message: 'Производитель успешно добавлен!' });
   } catch (err) {

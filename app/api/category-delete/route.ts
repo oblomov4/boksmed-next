@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import { db } from '@/db';
 import { categories } from '@/db/schema';
 import { eq } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const DELETE = auth(async (req) => {
@@ -17,6 +18,8 @@ export const DELETE = auth(async (req) => {
     const res = await req.json();
 
     await db.delete(categories).where(eq(categories.id, res.id));
+
+    revalidatePath('/catalog');
 
     return NextResponse.json({ success: true });
   } catch (err) {

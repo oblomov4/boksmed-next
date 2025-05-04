@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import { db } from '@/db';
 import { products } from '@/db/schema';
+import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const POST = auth(async (req) => {
@@ -14,6 +15,8 @@ export const POST = auth(async (req) => {
     }
     const res = await req.json();
     await db.insert(products).values(res);
+
+    revalidatePath('/product[id]/page');
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {
     console.log(err);
