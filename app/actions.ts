@@ -315,10 +315,6 @@ export async function createOrder(city: string, price: number) {
       })
       .returning();
 
-    await db
-      .insert(futureReviews)
-      .values({ userId: Number(session.user.id), ordersId: ordersCreated.id });
-
     await db.update(carts).set({ totalAmount: 0 }).where(eq(carts.id, userCart.id));
 
     await db.delete(cartsItems).where(eq(cartsItems.cartId, userCart.id));

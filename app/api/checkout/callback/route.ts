@@ -1,7 +1,7 @@
 import { PaymentCallbackData } from '@/@types/yookassa';
 import { ItemsType } from '@/app/(main)/profile/orders/page';
 import { db } from '@/db';
-import { orders, products } from '@/db/schema';
+import { futureReviews, orders, products } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -48,6 +48,8 @@ export async function POST(req: NextRequest) {
           });
         }
       }
+
+      await db.insert(futureReviews).values({ userId: Number(order.userId), ordersId: order.id });
     }
 
     return NextResponse.json({ success: true });
