@@ -5,8 +5,6 @@ export async function POST(request: NextRequest) {
   try {
     const req = await request.json();
 
-    console.log(req);
-
     const width = getNumber(req.width);
     const length = getNumber(req.length);
     const height = getNumber(req.heightProd);

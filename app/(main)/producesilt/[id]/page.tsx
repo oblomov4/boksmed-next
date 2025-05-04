@@ -36,8 +36,6 @@ export default async function CatalogIdPage({
     where: (producesilt, { eq }) => eq(producesilt.id, id),
   });
 
-  console.log(products);
-
   return (
     <>
       <BreadCrumps

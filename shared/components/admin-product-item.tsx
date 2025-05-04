@@ -34,9 +34,7 @@ export const AdminProductItem: React.FC<Props> = ({
         body: JSON.stringify({ visible: !isVisible, id: id }),
       });
 
-      const data = await res.json();
-
-      console.log(data);
+      await res.json();
     } catch (err) {
       console.log(err);
     }

@@ -9,8 +9,6 @@ export default async function UserOrdersPage({ params }: { params: Promise<{ id:
     where: (orders, { eq }) => eq(orders.userId, id),
   });
 
-  console.log(orders);
-
   return (
     <section className="orders">
       <div className="container">

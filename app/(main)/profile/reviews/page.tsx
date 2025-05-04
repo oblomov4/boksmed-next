@@ -18,8 +18,6 @@ export default async function ReviewsPage() {
     },
   });
 
-  console.log(futureReviews);
-
   return (
     <>
       <BreadCrumps

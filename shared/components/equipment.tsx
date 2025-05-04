@@ -13,8 +13,6 @@ interface Props {
 export const Equipment: React.FC<Props> = ({ all, catalog }) => {
   const [show, setShow] = React.useState<boolean>(false);
 
-  console.log('PERERISOVKA?');
-
   return (
     <section className="equipment">
       <div className="container">

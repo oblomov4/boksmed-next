@@ -4,9 +4,6 @@ import { AdminCategory, CategoryItem } from '@/shared/components';
 
 export default async function CategoryAdminPage() {
   const categories: SelectCategoryTable[] | undefined = await db.query.categories.findMany();
-
-  console.log(categories);
-
   return (
     <>
       <h2 className="title main-content-title">Категории</h2>

@@ -22,8 +22,6 @@ export const CartTable: React.FC<Props> = ({
   onClickCountButton,
   removeCartItem,
 }) => {
-  console.log(quantity);
-
   return (
     <div className="user-cart-table">
       <div className="cell cell-title">фото</div>

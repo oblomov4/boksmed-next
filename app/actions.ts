@@ -66,8 +66,6 @@ export async function orderCall(
       message: formData.get('message'),
     });
 
-    console.log(validatedFields);
-
     if (!validatedFields.success) {
       return {
         errors: validatedFields.error.flatten().fieldErrors,
@@ -103,8 +101,6 @@ export async function editProfile(
     inn: formData.get('inn'),
     phone: formData.get('phone'),
   });
-
-  console.log(validatedFields);
 
   if (!validatedFields.success) {
     return {
@@ -179,10 +175,6 @@ export async function registerUser(
   prevState: RegisterUserState,
   formData: FormData,
 ): Promise<RegisterUserState> {
-  console.log('ПОпало сюда?');
-
-  console.log(formData);
-
   const validatedFields = registerSchema.safeParse({
     email: formData.get('email'),
     name: formData.get('name'),
@@ -255,7 +247,6 @@ export async function createOrder(city: string, price: number) {
       },
     });
 
-    console.log(userCart);
 
     /* Если корзина не найдена возращаем ошибку */
     if (!userCart) {

@@ -27,8 +27,6 @@ export const Search: React.FC = () => {
     }
   }
 
-  console.log(findItem);
-
   return (
     <div className="header__top-input-wrapper">
       <input

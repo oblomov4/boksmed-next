@@ -98,7 +98,6 @@ export const CalculateComponent: React.FC = () => {
 
     if (!cities && !allCities) {
       getCities();
-      console.log(cities);
     }
   }, [cities, allCities]);
 

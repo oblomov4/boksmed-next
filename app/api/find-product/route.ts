@@ -9,14 +9,10 @@ export async function POST(req: NextRequest) {
 
     const title = res.find;
 
-    console.log(title);
-
     const find = await db
       .select()
       .from(products)
       .where(sql`to_tsvector('russian', ${products.title}) @@ to_tsquery('russian', ${title})`);
-
-    console.log(find);
 
     return NextResponse.json(find);
   } catch (err) {

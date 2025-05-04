@@ -11,8 +11,6 @@ export default async function UserReviewsPage({ params }: { params: Promise<{ id
     },
   });
 
-  console.log(reviews);
-
   return (
     <section className="orders">
       <div className="container">

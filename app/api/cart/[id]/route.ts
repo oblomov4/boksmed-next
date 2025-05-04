@@ -4,9 +4,11 @@ import { updateCartTotalAmount } from '@/shared/lib/update-cart-total-amount';
 import { eq } from 'drizzle-orm';
 import { NextResponse, type NextRequest } from 'next/server';
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const id = Number(params.id);
+    const getParams = await params;
+
+    const { id } = getParams;
     const data = (await req.json()) as { quantity: number };
     const token = req.cookies.get('cartToken')?.value;
 
@@ -15,14 +17,17 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
     }
 
     const cartItem = await db.query.cartsItems.findFirst({
-      where: (cartsItems, { eq }) => eq(cartsItems.id, id),
+      where: (cartsItems, { eq }) => eq(cartsItems.id, Number(id)),
     });
 
     if (!cartItem) {
       return NextResponse.json({ error: 'Cart item not found' });
     }
 
-    await db.update(cartsItems).set({ quantity: data.quantity }).where(eq(cartsItems.id, id));
+    await db
+      .update(cartsItems)
+      .set({ quantity: data.quantity })
+      .where(eq(cartsItems.id, Number(id)));
 
     const updatedUserCart = await updateCartTotalAmount(token);
 
@@ -33,7 +38,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const token = req.cookies.get('cartToken')?.value;
