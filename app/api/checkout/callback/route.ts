@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
 
     if (isSucceeded) {
       for (let i = 0; i < (order.items as Array<ItemsType>).length; i++) {
+        const elem = (order.items as Array<ItemsType>)[i];
         const productId = (order.items as Array<ItemsType>)[i].productId;
         const findProduct = await db.query.products.findFirst({
           where: (products, { eq }) => eq(products.id, productId),
@@ -37,11 +38,15 @@ export async function POST(req: NextRequest) {
           throw new Error();
         }
 
-        if (findProduct.quantity > 1) {
+        const newQuantity = findProduct.quantity - elem.quantity;
+
+        const isVisible = newQuantity > 1;
+
+        if (isVisible) {
           await db
             .update(products)
             .set({
-              quantity: findProduct.quantity - 1,
+              quantity: newQuantity,
             })
             .where(eq(products.id, productId));
         } else {
