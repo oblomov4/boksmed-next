@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
         const newQuantity = findProduct.quantity - elem.quantity;
 
-        const isVisible = newQuantity > 1;
+        const isVisible = newQuantity >= 1;
 
         if (isVisible) {
           await db
