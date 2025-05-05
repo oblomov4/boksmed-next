@@ -42,6 +42,11 @@ input {
   margin-bottom: 100px;
 }
 
+.product-quantity {
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;

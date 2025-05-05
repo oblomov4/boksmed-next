@@ -6,6 +6,7 @@ import { useCart } from '../hooks/use-cart';
 import clsx from 'clsx';
 import { Session } from 'next-auth';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 interface Props {
   session: Session | null;
@@ -15,6 +16,20 @@ export const Cart: React.FC<Props> = ({ session }) => {
   const { totalAmount, updateItemQuantity, items, removeCartItem } = useCart();
 
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+    console.log('ONCLICK COUNT BUTTON');
+    console.log(items);
+
+    if (type === 'plus') {
+      const checkCountItem = items.find((item) => item.id === id);
+
+      const quantityCheck = checkCountItem!.products?.quantity;
+
+      if (Number(quantityCheck) <= quantity) {
+        toast.error('У нас недостаточно единиц товаров =(');
+        return;
+      }
+    }
+
     const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
     updateItemQuantity(id, newQuantity);
   };

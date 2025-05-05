@@ -105,6 +105,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: nu
               <div className="product-info__top">
                 <h1 className="product-info__title">{product.title}</h1>
               </div>
+              {product.quantity <= 3 && (
+                <p className="product-quantity">В наличие осталось: {product.quantity}</p>
+              )}
               <p className="product-info__price">{product.price}₽</p>
 
               <Buttons id={id} />
