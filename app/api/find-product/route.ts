@@ -12,7 +12,9 @@ export async function POST(req: NextRequest) {
     const find = await db
       .select()
       .from(products)
-      .where(sql`to_tsvector('russian', ${products.title}) @@ to_tsquery('russian', ${title})`);
+      .where(
+        sql`to_tsvector('russian', ${products.title}) @@ to_tsquery('russian', ${title}) AND ${products.visible} = ${true}`,
+      );
 
     return NextResponse.json(find);
   } catch (err) {
