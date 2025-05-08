@@ -1,5 +1,7 @@
 import { BreadCrumps, NewsItem } from '@/shared/components';
 
+export const dynamic = 'force-dynamic';
+
 export default function NewsPage() {
   return (
     <>
