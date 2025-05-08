@@ -3,6 +3,9 @@ import { SelectProductTable } from '@/db/schema';
 import { BreadCrumps, Filters, ProductItem } from '@/shared/components';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic'
+
+
 export default async function CatalogIdPage({
   params,
   searchParams,

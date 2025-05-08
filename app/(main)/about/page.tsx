@@ -2,6 +2,8 @@ import { db } from '@/db';
 import { SelectEventsTable } from '@/db/schema';
 import { AboutWrapper, BreadCrumps } from '@/shared/components';
 
+export const dynamic = 'force-dynamic'
+
 export default async function AboutPage() {
   const events: SelectEventsTable[] | undefined = await db.query.events.findMany({
     where: (events, { eq }) => eq(events.visible, true),

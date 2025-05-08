@@ -2,7 +2,6 @@ import { auth } from '@/auth';
 import { db } from '@/db';
 import { categories, SelectCategoryTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 type UpdatedCategoryType = {
@@ -44,7 +43,6 @@ export const PATCH = auth(async (req) => {
       .set({ ...updatedCategory })
       .where(eq(categories.id, res.id));
 
-    revalidatePath('/catalog');
     return NextResponse.json({ message: 'Категория обновлена!' });
   } catch (err) {
     console.log(err);

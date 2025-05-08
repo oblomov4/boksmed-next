@@ -2,7 +2,6 @@ import { auth } from '@/auth';
 import { db } from '@/db';
 import { products } from '@/db/schema';
 import { eq } from 'drizzle-orm';
-import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const PATCH = auth(async (req) => {
@@ -17,7 +16,6 @@ export const PATCH = auth(async (req) => {
     const res = await req.json();
 
     await db.update(products).set({ visible: res.visible }).where(eq(products.id, res.id));
-    revalidatePath('/product[id]/page');
     return NextResponse.json({ success: true });
   } catch (err) {
     console.log(err);

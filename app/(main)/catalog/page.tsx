@@ -2,6 +2,9 @@ import { db } from '@/db';
 import { SelectCategoryTable } from '@/db/schema';
 import { BreadCrumps, Equipment } from '@/shared/components';
 
+export const dynamic = 'force-dynamic'
+
+
 export default async function CatalogPage() {
   const catalog: SelectCategoryTable[] | undefined = await db.query.categories.findMany();
 

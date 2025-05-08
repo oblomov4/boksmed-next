@@ -1,7 +1,6 @@
 import { auth } from '@/auth';
 import { db } from '@/db';
 import { events } from '@/db/schema';
-import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export const POST = auth(async (req) => {
@@ -23,7 +22,6 @@ export const POST = auth(async (req) => {
       imageUrl,
     });
 
-    revalidatePath('/about');
 
     return NextResponse.json(
       {

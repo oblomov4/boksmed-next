@@ -3,6 +3,9 @@ import { SelectProductTable } from '@/db/schema';
 import { BreadCrumps, Filters, ProductItem } from '@/shared/components';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic'
+
+
 export default async function CatalogIdPage({
   params,
   searchParams,
@@ -18,17 +21,17 @@ export default async function CatalogIdPage({
 
   if (sort === 'asc') {
     products = await db.query.products.findMany({
-      where: (products, { eq }) => eq(products.producesiltId, id),
+      where: (products, { eq, and }) => and(eq(products.producesiltId, id), eq(products.visible, true)),
       orderBy: (products, { asc }) => [asc(products.price)],
     });
   } else if (sort === 'desc') {
     products = await db.query.products.findMany({
-      where: (products, { eq }) => eq(products.producesiltId, id),
+      where: (products, { eq, and }) => and(eq(products.producesiltId, id), eq(products.visible, true)),
       orderBy: (products, { desc }) => [desc(products.price)],
     });
   } else {
     products = await db.query.products.findMany({
-      where: (products, { eq }) => eq(products.producesiltId, id),
+      where: (products, { eq, and }) => and(eq(products.producesiltId, id), eq(products.visible , true)),
     });
   }
 

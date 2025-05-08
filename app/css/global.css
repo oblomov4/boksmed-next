@@ -2841,6 +2841,12 @@ input {
   font-size: 15px;
 }
 
+.find-item-close {
+  display: flex
+;
+    justify-content: end;
+}
+
 .order-call-item {
   display: flex;
   justify-content: space-between;
