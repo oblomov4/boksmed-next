@@ -4,8 +4,7 @@ import { BreadCrumps, ProducesiltItem } from '@/shared/components';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export const dynamic = 'force-dynamic'
-
+export const dynamic = 'force-dynamic';
 
 export default async function ProducesiltPage() {
   const producesilts: SelectProducesiltTable[] | undefined = await db.query.producesilts.findMany();
@@ -19,7 +18,7 @@ export default async function ProducesiltPage() {
       <BreadCrumps
         links={[
           { id: 0, text: 'Главная', link: '/' },
-          { id: 1, text: 'Производители', link: '/produceslit' },
+          { id: 1, text: 'Производители', link: '/producesilt' },
         ]}
       />
 

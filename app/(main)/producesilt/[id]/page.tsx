@@ -46,8 +46,8 @@ export default async function CatalogIdPage({
       <BreadCrumps
         links={[
           { id: 0, text: 'Главная', link: '/' },
-          { id: 1, text: 'Производители', link: '/produceslit' },
-          { id: 2, text: `${producesilt?.title}`, link: `/produceslit/${id}` },
+          { id: 1, text: 'Производители', link: '/producesilt' },
+          { id: 2, text: `${producesilt?.title}`, link: `/producesilt/${id}` },
         ]}
       />
 
