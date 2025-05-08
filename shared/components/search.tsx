@@ -30,7 +30,6 @@ export const Search: React.FC = () => {
 
   return (
     <div className="header__top-input-wrapper">
-      <div className='find-item-close'><button onClick={() => setFindItem(null)}><Image src="/images/close.png" width={14} height={14} alt='close' /></button></div>
       <input
         className="header__top-input"
         type="text"
@@ -40,6 +39,11 @@ export const Search: React.FC = () => {
       />
       {findItem?.length !== 0 && findItem != null && (
         <div className="find-item-wrapper">
+          <div className="find-item-close">
+            <button onClick={() => setFindItem(null)}>
+              <Image src="/images/close.png" width={14} height={14} alt="close" />
+            </button>
+          </div>
           {findItem?.map((item) => (
             <SearchFindItem
               setFindItem={setFindItem}
