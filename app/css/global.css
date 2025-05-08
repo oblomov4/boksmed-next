@@ -2456,6 +2456,9 @@ input {
 .producesilt__box-image-wrapper {
   display: flex;
   justify-content: center;
+  min-width: 342px;
+  min-height: 118px;
+  align-items: center;
 }
 
 .event-add-wrapper.show {
@@ -2842,9 +2845,8 @@ input {
 }
 
 .find-item-close {
-  display: flex
-;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .order-call-item {

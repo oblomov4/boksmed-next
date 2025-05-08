@@ -132,7 +132,7 @@ export const EventAdd: React.FC<Props> = ({ show, setShow }) => {
           <h3 className="event-add__box-title">описание</h3>
           <input
             className="event-add__box-input"
-            placeholder="Описаниея события"
+            placeholder="Описание события"
             type="text"
             value={eventText.description}
             onChange={(e) =>

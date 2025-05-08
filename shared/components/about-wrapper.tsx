@@ -61,7 +61,7 @@ export const AboutWrapper: React.FC<Props> = ({ events }) => {
         })}
       </div>
 
-      {events.length >= 6 && (
+      {events.length > 6 && (
         <button
           className={clsx('about__btn', !showAll && 'rotate-btn')}
           onClick={() => setShowAll(!showAll)}>
