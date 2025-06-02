@@ -60,3 +60,4 @@ Boksmed — это интернет-магазин медицинского об
 
 1.  git clone https://github.com/oblomov4/boksmed-next.git
 2.  npm install
+3.  npm run dev
