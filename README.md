@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Boksmed – Интернет-магазин медицинского оборудования  
 
-## Getting Started
+**Live Demo**: [https://boksmed.vercel.app/](https://boksmed.vercel.app/)  
+**GitHub**: [https://github.com/oblomov4/boksmed-next](https://github.com/oblomov4/boksmed-next)  
 
-First, run the development server:
+## 📌 О проекте  
+Boksmed — это интернет-магазин медицинского оборудования с полным циклом онлайн-продаж. Разработан на **Next.js** (App Router) с использованием **TypeScript**.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Ключевые возможности:  
+- 📦 Каталог оборудования с фильтрацией, поиском и отзывами.  
+- 💳 Интеграция с **ЮKassa** для приема платежей.  
+- 🚛 Автоматический расчет доставки через API логистики.  
+- 👨‍⚕️ Админ-панель для управления контентом и заказами.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Технологический стек  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend  
+- **Next.js 14** (App Router)  
+- **TypeScript**  
+- **Zustand** (глобальное состояние)  
+- **Чистый CSS** (без CSS-фреймворков)  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend  
+- **Next.js API Routes**  
+- **Drizzle ORM** (работа с базой данных)  
+- **Neon** (PostgreSQL-совместимая Serverless БД)  
+- **API ЮKassa** (платежи)  
 
-## Learn More
+## 🔥 Ключевые особенности  
 
-To learn more about Next.js, take a look at the following resources:
+### 🏥 Пользовательская часть  
+- 🔍 Поиск и фильтрация по характеристикам оборудования  
+- ⭐ Система оценок и отзывов  
+- 🛒 Корзина с расчетом доставки  
+- 💰 Оплата через ЮKassa  
+- 📦 Отслеживание заказов по трек-номеру  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👨‍⚕️ Админ-панель  
+- 🩺 Управление медицинским оборудованием  
+- 📊 Контроль остатков на складе  
+- 📦 Управление заказами  
+- 📢 Публикация новостей  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### ⚙️ Backend-логика  
+- **База данных**:  
+  - Используется **Neon** (Serverless PostgreSQL)  
+  - **Drizzle ORM** для типизированных запросов  
+  - Схемы для товаров, заказов, пользователей  
 
-## Deploy on Vercel
+- **Платежи**:  
+  - Интеграция с **ЮKassa API**  
+  - Webhook для подтверждения платежей  
+  - Автоматическое обновление остатков  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Доставка**:  
+  - Расчет стоимости через внешнее API  
+  - Учет расположения склада  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Установка и запуск  
+
+1.  git clone https://github.com/oblomov4/boksmed-next.git
+2.  npm install
